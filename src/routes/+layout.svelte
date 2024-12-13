@@ -1,6 +1,10 @@
 <script>
-	import '../app.css';
-	let { children } = $props();
+  import "../app.css";
+  import Navbar from "../components/navbar.svelte";
+  let { children } = $props();
 </script>
 
-{@render children()}
+<div class="bg-[black] text-white h-screen">
+  <Navbar />
+  {@render children()}
+</div>
