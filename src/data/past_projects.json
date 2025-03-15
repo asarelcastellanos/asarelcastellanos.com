@@ -1,6 +1,6 @@
 [
     {
-        "projectName": "BlockTalk",
+        "projectName": "BLOCKTALK",
         "startDate": "Jun 2022",
         "endDate": "Mar 2022",
         "description": "A Snap Mini built on React Native that allows users to create and share stories (by using the native camera to upload photos, take photos, or record videos) answering prompts about incarceration.",
