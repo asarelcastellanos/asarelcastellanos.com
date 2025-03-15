@@ -1,4 +1,4 @@
-<header class="fixed top-0 w-full bg-black z-1000">
+<header class="fixed top-0 w-full bg-black z-50">
   <nav aria-labelledby="primary-navigation" class="flex justify-between items-center p-4">
     <div class="logo flex items-center">
       <svg
