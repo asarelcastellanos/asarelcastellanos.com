@@ -1,0 +1,23 @@
+[
+    {
+        "projectName": "SMC Academic Data Docs",
+        "startDate": "Mar 2025",
+        "endDate": "Current",
+        "description": "An HTML website built on Quarto that documents the process and learnings of Grade Distribution Transformer and Class Schedule Scraper.",
+        "gitHubLink": "https://github.com/SMCAcademicData/docs"
+    },
+    {
+        "projectName": "Grade Distribution Transformer",
+        "startDate": "Mar 2025",
+        "endDate": "Current",
+        "description": "A Python script that processes all available PDF tables published by SMC. Extracts, cleans, and transforms grade distribution data into .csv and .RDATA files for easy access.",
+        "gitHubLink": ""
+    },
+    {
+        "projectName": "Class Schedule Scraper",
+        "startDate": "Mar 2025",
+        "endDate": "Current",
+        "description": "A Python script that scrapes all available class schedules published by SMC. Extracts, cleans, and transforms class schedule data into .csv and .RDATA files for easy access.",
+        "gitHubLink": ""
+    }
+]

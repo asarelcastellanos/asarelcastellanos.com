@@ -1,13 +1,16 @@
 <script>
-    let { company, title, from, to } = $props()
+    export let companyName;
+    export let jobTitle;
+    export let startDate;
+    export let endDate;
 </script>
 
-<div class="block md:flex justify-between w-full p-2.5">
+<div class="block lg:flex justify-between w-full p-2.5 px-4 lg:px-8">
   <div>
-    <h4 class="text-xl text-[yellows]">{company}</h4>
-    <p class="text-md italic">{title}</p>
+    <h4 class="text-xl">{companyName}</h4>
+    <p class="text-lg italic">{jobTitle}</p>
   </div>
   <div>
-    <p class="text-md">{from} - {to}</p>
+    <p class="text-lg">{startDate} - {endDate}</p>
   </div>
 </div>
