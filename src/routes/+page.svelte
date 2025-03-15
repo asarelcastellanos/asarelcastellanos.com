@@ -5,7 +5,7 @@
   import Education from "../components/education.svelte";
   import { onMount } from "svelte";
 
-  let roles = ["Economist", "Data Analyst", "Software Developer"];
+  let roles = ["Econometrician", "Data Analyst", "Software Developer"];
   let currentRole = roles[0];
   let index = 0;
 
