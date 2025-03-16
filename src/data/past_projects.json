@@ -1,23 +1,42 @@
 [
     {
+        "projectName": "parousía",
+        "startDate": "Sept 2024",
+        "endDate": "Jan 2025",
+        "description": "A web-based UI and script that tracks Cal Poly ID swipes and records attendance, built for Cal Poly SHPE.",
+        "gitHubLink": "",
+        "websiteLink": ""
+    },
+    {
+        "projectName": "calpolyshpe.org",
+        "startDate": "Jul 2024",
+        "endDate": "Aug 2024",
+        "description": "The official website for Cal Poly SHPE. This website is created with Next.js & TailwiindCSS and hosted through Vercel.",
+        "gitHubLink": "",
+        "websiteLink": "https://calpolyshpe.org"
+    },
+    {
         "projectName": "BLOCKTALK",
         "startDate": "Jun 2022",
         "endDate": "Mar 2022",
         "description": "A Snap Mini built on React Native that allows users to create and share stories (by using the native camera to upload photos, take photos, or record videos) answering prompts about incarceration.",
-        "gitHubLink": "https://github.com/asarelcastellanos/BLOCKTALK"
+        "gitHubLink": "https://github.com/asarelcastellanos/BLOCKTALK",
+        "websiteLink": ""
     },
     {
         "projectName": "chatsnap",
         "startDate": "Jun 2022",
         "endDate": "Aug 2022",
         "description": "A snapchat clone built in React Native. A template used by all teams during Snap Academies 2022 & 2023.",
-        "gitHubLink": "https://github.com/asarelcastellanos/chatsnap"
+        "gitHubLink": "https://github.com/asarelcastellanos/chatsnap",
+        "websiteLink": ""
     },
     {
         "projectName": "salon",
         "startDate": "Jan 2022",
         "endDate": "Mar 2022",
         "description": "A website for Vicious Streak Salon built on Next.js.",
-        "gitHubLink": "https://github.com/asarelcastellanos/salon"
+        "gitHubLink": "https://github.com/asarelcastellanos/salon",
+        "websiteLink": "https://viciousstreaksalon.vercel.app"
     }
 ]

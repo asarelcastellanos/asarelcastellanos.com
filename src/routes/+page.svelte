@@ -5,7 +5,7 @@
   import Education from "../components/education.svelte";
   import { onMount } from "svelte";
 
-  let roles = ["Econometrician", "Data Analyst", "Software Developer"];
+  let roles = ["is an Econometrician.", "is a Data Analyst.", "is a Software Developer."];
   let currentRole = roles[0];
   let index = 0;
 
@@ -48,8 +48,8 @@
 
 <main class="p-4 space-y-8 slide-in">
   <section class="h-screen flex flex-col justify-center items-center">
-    <h2 class="text-4xl">Asarel Castellanos</h2>
-    <p class="text-2xl my-4">{currentRole}</p>
+    <h2 class="text-4xl font-bold">Asarel Castellanos</h2>
+    <p class="text-2xl my-4 italic font-thin">{currentRole}</p>
   </section>
   <section>
     <Education />

@@ -1,5 +1,8 @@
 <header class="fixed top-0 w-full bg-black z-50">
-  <nav aria-labelledby="primary-navigation" class="flex justify-between items-center p-4">
+  <nav
+    aria-labelledby="primary-navigation"
+    class="flex justify-between items-center p-4"
+  >
     <div class="logo flex items-center">
       <svg
         xmlns="http://www.w3.org/2000/svg"
@@ -7,7 +10,7 @@
         viewBox="0 0 24 24"
         stroke-width="1.5"
         stroke="currentColor"
-        class="w-6 h-6"
+        class="w-8 h-8"
       >
         <path
           stroke-linecap="round"
@@ -22,24 +25,24 @@
           href="/asarelcastellanos_resume.pdf"
           aria-label="Download Resume"
           download
-          class="no-underline text-inherit"
-        >Resume</a>
+          class="no-underline text-inherit font-semibold">resume</a
+        >
       </li>
       <li>
         <a
           href="https://www.linkedin.com/in/asarelcastellanos/"
           target="_blank"
           aria-label="LinkedIn Link"
-          class="no-underline text-inherit"
-        >LinkedIn</a>
+          class="no-underline text-inherit font-semibold">linkedin</a
+        >
       </li>
       <li>
         <a
           href="https://github.com/asarelcastellanos"
           target="_blank"
           aria-label="Github Link"
-          class="no-underline text-inherit"
-        >Github</a>
+          class="no-underline text-inherit font-semibold">github</a
+        >
       </li>
     </ul>
   </nav>

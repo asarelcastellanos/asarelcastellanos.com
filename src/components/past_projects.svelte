@@ -5,7 +5,7 @@
 
 <section class="flex flex-col lg:flex-row pb-20">
   <div class="lg:w-1/2 p-2.5 px-4 lg:px-8">
-    <h3 class="text-2xl mb-2 flex items-center">
+    <h3 class="text-2xl mb-2 flex items-center font-semibold">
       <span class="mr-1">
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -35,6 +35,7 @@
             endDate={project.endDate}
             description={project.description}
             gitHubLink={project.gitHubLink}
+            websiteLink={project.websiteLink}
           />
         </li>
       {/each}
