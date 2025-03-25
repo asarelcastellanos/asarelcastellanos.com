@@ -1,7 +1,7 @@
 [    {
         "projectName": "Data Science: Understanding the ETV Process",
-        "startDate": "March 2025",
-        "endDate": "March 2025",
+        "startDate": "Mar 2025",
+        "endDate": "Mar 2025",
         "description": "A shiny app that helps explain the ETV (Extraction, Transformation, Visualization) process within R.",
         "gitHubLink": "https://github.com/asarelcastellanos/etv_process",
         "websiteLink": "https://asarelcastellanos.shinyapps.io/understanding_etv/"
