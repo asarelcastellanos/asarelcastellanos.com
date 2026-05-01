@@ -1,66 +1,91 @@
-<script>
-  import Experiences from "../components/experiences.svelte";
-  import CurrentProjects from "../components/current_projects.svelte";
-  import PastProjects from "../components/past_projects.svelte";
-  import Education from "../components/education.svelte";
-  import { onMount } from "svelte";
+<script lang="ts">
+	import Header from '$lib/components/Header.svelte';
+	import Bio from '$lib/components/Bio.svelte';
+	import Section from '$lib/components/Section.svelte';
+	import Work from '$lib/components/Work.svelte';
+	import LinkRow from '$lib/components/LinkRow.svelte';
+	import Footer from '$lib/components/Footer.svelte';
+	import Cursor from '$lib/components/Cursor.svelte';
 
-  let roles = ["is an Econometrician.", "is a Data Analyst.", "is a Software Developer."];
-  let currentRole = roles[0];
-  let index = 0;
-
-  onMount(() => {
-    const interval = setInterval(() => {
-      index = (index + 1) % roles.length;
-      currentRole = roles[index];
-    }, 2500);
-
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('slide-in');
-        }
-      });
-    }, { threshold: 0.1 });
-
-    document.querySelectorAll('section').forEach(section => {
-      observer.observe(section);
-    });
-
-    return () => {
-      clearInterval(interval);
-      observer.disconnect();
-    };
-  });
+	let mounted = $state(false);
+	$effect(() => {
+		mounted = true;
+	});
 </script>
 
-<style>
-  .slide-in {
-    opacity: 1;
-    transform: translateY(0);
-    transition: opacity 0.5s ease-out, transform 0.5s ease-out;
-  }
-  section {
-    opacity: 0;
-    transform: translateY(-20px);
-  }
-</style>
+<svelte:head>
+	<title>Asarel Castellanos</title>
+	<meta
+		name="description"
+		content="Full-stack engineer in Los Angeles. I'm equally at home in a React component, a Python script, or a 200-line SQL migration nobody asked for."
+	/>
+</svelte:head>
 
-<main class="p-4 space-y-8 slide-in">
-  <section class="h-screen flex flex-col justify-center items-center">
-    <h2 class="text-4xl font-bold">Asarel Castellanos</h2>
-    <p class="text-2xl my-4 italic font-thin">{currentRole}</p>
-  </section>
-  <section>
-    <Education />
-  </section>
-  <section>
-    <Experiences />
-  </section>
-  <section>
-    <CurrentProjects />
-  </section>
-  <section>
-    <PastProjects />
-  </section>
+<Cursor />
+
+<main class:mounted>
+	<Header />
+	<Bio />
+
+	<Section eyebrow="currently">
+		<p class="currently">
+			Building data pipelines and crawlers that pretend to be browsers. Reading more, writing less.
+			Tools sharp, dependencies few.
+		</p>
+	</Section>
+
+	<Section eyebrow="work">
+		<Work />
+	</Section>
+
+	<Section eyebrow="elsewhere">
+		<div class="links">
+			<LinkRow label="GitHub" meta="asarelcastellanos" href="https://github.com/asarelcastellanos" />
+			<LinkRow
+				label="LinkedIn"
+				meta="in/asarelcastellanos"
+				href="https://www.linkedin.com/in/asarelcastellanos/"
+			/>
+			<LinkRow label="Email" meta="say hi" href="mailto:asarelc@gmail.com" />
+		</div>
+	</Section>
+
+	<Footer />
 </main>
+
+<style>
+	main {
+		max-width: 640px;
+		margin: 0 auto;
+		padding: 32px 24px 48px;
+		min-height: 100vh;
+		text-transform: lowercase;
+		opacity: 0;
+		transition: opacity var(--dur-slow) var(--ease-out);
+	}
+
+	main.mounted {
+		opacity: 1;
+	}
+
+	.links {
+		display: flex;
+		flex-direction: column;
+	}
+
+	.currently {
+		font-family: var(--font-sans);
+		font-size: 16px;
+		line-height: 1.55;
+		color: var(--fg);
+		max-width: 560px;
+		margin: 0;
+	}
+
+	@media (prefers-reduced-motion: reduce) {
+		main {
+			opacity: 1;
+			transition: none;
+		}
+	}
+</style>
