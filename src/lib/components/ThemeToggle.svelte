@@ -4,8 +4,8 @@
 	import Icon from '$lib/components/Icon.svelte';
 	import { applyTheme, currentTheme, nextTheme, type Theme } from '$lib/theme';
 
-	// Prerendered HTML is always dark. onMount reads what the pre-paint script chose.
-	let theme = $state<Theme>('dark');
+	// Prerendered HTML is always light. onMount reads what the pre-paint script chose.
+	let theme = $state<Theme>('light');
 
 	onMount(() => {
 		theme = currentTheme();

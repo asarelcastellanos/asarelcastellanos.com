@@ -1,15 +1,15 @@
 <!doctype html>
-<html lang="en" class="dark" data-theme="dark">
+<html lang="en" data-theme="light">
 	<head>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
 		<meta name="text-scale" content="scale" />
-		<!-- Dark is the default. The script below updates this for the light theme. -->
-		<meta name="theme-color" content="#090b0a" />
+		<!-- Light is the default. The script below updates this for the dark theme. -->
+		<meta name="theme-color" content="#e7e8e4" />
 		%sveltekit.head%
 		<script>
 			// Placed after the stylesheet links so --background is readable. Runs before first paint so the page never flashes the wrong theme.
-			// Order: stored choice, then the system setting, then dark.
+			// Order: stored choice, then the system setting, then light.
 			(function () {
 				var theme = null;
 				try {
@@ -19,7 +19,7 @@
 					// Storage can be blocked. Fall through to the system setting.
 				}
 				if (theme === null) {
-					theme = matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark';
+					theme = matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
 				}
 				var root = document.documentElement;
 				root.classList.toggle('dark', theme === 'dark');

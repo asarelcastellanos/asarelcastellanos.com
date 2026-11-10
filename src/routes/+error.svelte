@@ -16,10 +16,10 @@
 	<meta name="robots" content="noindex" />
 </svelte:head>
 
-<main id="main" class="pt-16 sm:pt-24">
-	<div class="flex flex-col items-center gap-3 rounded-3xl bg-surface-secondary px-6 py-12 text-center">
-		<h1 class="text-base font-semibold">{heading}</h1>
+<main id="main">
+	<div class="frame-block flex flex-col items-center gap-3 py-20 text-center sm:py-28">
+		<h1 class="text-base font-semibold lowercase">{heading}</h1>
 		<p class="max-w-sm text-sm text-muted">{message}</p>
-		<a href="/" class="{buttonVariants({ variant: 'secondary', size: 'sm' })} mt-1">Go to the home page</a>
+		<a href="/" class="{buttonVariants({ variant: 'secondary', size: 'sm' })} mt-1 lowercase">Go to the home page</a>
 	</div>
 </main>

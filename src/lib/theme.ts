@@ -1,4 +1,4 @@
-/** The two themes. Absence of a stored choice means "follow the system". */
+/** The two themes. Absence of a stored choice means "follow the system, then light". */
 export const THEMES = ['light', 'dark'] as const;
 export type Theme = (typeof THEMES)[number];
 
@@ -23,7 +23,7 @@ export function nextTheme(theme: Theme): Theme {
 
 /** The theme the pre-paint script in app.html already applied to the page. */
 export function currentTheme(): Theme {
-	return document.documentElement.dataset.theme === 'light' ? 'light' : 'dark';
+	return document.documentElement.dataset.theme === 'dark' ? 'dark' : 'light';
 }
 
 /** Sets the theme on the page, in the browser UI color, and in localStorage. */
