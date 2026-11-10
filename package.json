@@ -10,7 +10,8 @@
 		"prepare": "svelte-kit sync || echo ''",
 		"check": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json",
 		"check:watch": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json --watch",
-		"og": "node scripts/generate-og.mjs"
+		"og": "node scripts/generate-og.mjs",
+		"cover:howlate": "node scripts/generate-howlate-cover.mjs"
 	},
 	"devDependencies": {
 		"@gravity-ui/icons": "2.23.1",
