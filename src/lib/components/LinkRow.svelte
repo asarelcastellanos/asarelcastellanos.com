@@ -8,20 +8,14 @@
 	};
 
 	let { label, href, meta }: Props = $props();
-	let hover = $state(false);
+	// Only web links open in a new tab. A mailto: link hands off to the mail app.
+	const isWebLink = $derived(/^https?:\/\//i.test(href));
 </script>
 
-<a
-	{href}
-	target="_blank"
-	rel="noreferrer"
-	class:hover
-	onmouseenter={() => (hover = true)}
-	onmouseleave={() => (hover = false)}
->
+<a {href} target={isWebLink ? '_blank' : undefined} rel={isWebLink ? 'noreferrer' : undefined}>
 	<span class="label">
 		{label}
-		<span class="underline" class:active={hover}></span>
+		<span class="underline"></span>
 	</span>
 	<span class="rule"></span>
 	<span class="meta">{meta}</span>
@@ -41,7 +35,8 @@
 		font-family: var(--font-sans);
 	}
 
-	a.hover {
+	a:hover,
+	a:focus-visible {
 		color: var(--accent);
 	}
 
@@ -64,7 +59,8 @@
 		transition: transform 220ms var(--ease-out);
 	}
 
-	.underline.active {
+	a:hover .underline,
+	a:focus-visible .underline {
 		transform: scaleX(1);
 	}
 
@@ -84,7 +80,8 @@
 		transition: color var(--dur-base) var(--ease-out);
 	}
 
-	a.hover .meta {
+	a:hover .meta,
+	a:focus-visible .meta {
 		color: var(--accent);
 	}
 </style>

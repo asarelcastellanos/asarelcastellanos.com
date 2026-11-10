@@ -1,21 +1,23 @@
 <script lang="ts">
-	let now = $state(new Date());
+	// Empty during prerender so the static HTML carries no build-time clock.
+	let time = $state('');
 
-	$effect(() => {
-		const id = setInterval(() => {
-			now = new Date();
-		}, 30 * 1000);
-		return () => clearInterval(id);
-	});
-
-	const time = $derived(
-		now.toLocaleTimeString('en-US', {
+	function formatTime(date: Date): string {
+		return date.toLocaleTimeString('en-US', {
 			hour: 'numeric',
 			minute: '2-digit',
 			timeZone: 'America/Los_Angeles',
 			hour12: false
-		})
-	);
+		});
+	}
+
+	$effect(() => {
+		time = formatTime(new Date());
+		const id = setInterval(() => {
+			time = formatTime(new Date());
+		}, 30 * 1000);
+		return () => clearInterval(id);
+	});
 </script>
 
 <header>
@@ -23,7 +25,7 @@
 	<div class="meta">
 		<span>Los Angeles</span>
 		<span class="dot">·</span>
-		<span class="tabular">{time} PT</span>
+		<span class="tabular"><span class="time">{time}</span> PT</span>
 	</div>
 </header>
 
@@ -53,6 +55,13 @@
 		display: flex;
 		gap: 12px;
 		white-space: nowrap;
+	}
+
+	/* Reserves the width of "00:00" so the header does not shift when the clock fills in. */
+	.time {
+		display: inline-block;
+		min-width: 5ch;
+		text-align: right;
 	}
 
 	.dot {

@@ -1,5 +1,11 @@
+<script lang="ts">
+	import { SITE_AUTHOR } from '$lib/site';
+
+	const year = new Date().getFullYear();
+</script>
+
 <footer>
-	<span>© 2026 Asarel Castellanos</span>
+	<span>© {year} {SITE_AUTHOR}</span>
 	<span>Built with SvelteKit.</span>
 </footer>
 
