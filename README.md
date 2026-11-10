@@ -30,6 +30,7 @@ Open http://localhost:5173.
 | `npm run build` | Builds the site and prerenders every page. |
 | `npm run preview` | Serves the last build on port 4173. |
 | `npm run og` | Writes `static/og.png` and one `static/og/<slug>.png` per published project, and deletes images for projects that are drafts or gone. |
+| `npm run cover:howlate -- --out <file.png>` | Draws the howlate.la cover chart to the PNG you name, plus an SVG beside it. |
 
 ## Layout
 
@@ -58,6 +59,7 @@ static/
 └── og/                        one share image per published project
 scripts/
 ├── generate-og.mjs            renders the share images
+├── generate-howlate-cover.mjs draws the howlate.la cover chart
 └── fonts/                     Geist TTF files for the share images
 ```
 
@@ -122,3 +124,9 @@ pyftsubset Geist-Variable.woff2 \
 ```
 
 The TTF files in `scripts/fonts` are full fonts and only feed the share images.
+
+## howlate.la cover
+
+`scripts/generate-howlate-cover.mjs` draws a heatmap of the share of LA Metro arrivals more than 5 minutes late, by hour of the week. It downloads the latest site files from the `howlate-derived` bucket with `gcloud`, so you need access to the howlate-la project and a login from `gcloud auth login`. To skip the download, pass `--site <dir>` with a folder that holds `status.json` and `lines/*.json`.
+
+`--out` is required, and there is no default path. The script writes the PNG there and the SVG beside it. The chart publishes findings before howlate.la launches, so keep the output out of the repo until the site is live.
