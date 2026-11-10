@@ -8,10 +8,10 @@ The live site matches `main` (commit `353e35f`, 2026-04-30). It is a single Svel
 
 ### Content
 
-- The page has a name, a two-line bio, a "currently" line, 4 jobs (company, title, dates), a résumé download, and links to GitHub, LinkedIn, and email.
+- The page has a name, a two-line bio, a "currently" line, 4 jobs (company, title, dates), a resume download, and links to GitHub, LinkedIn, and email.
 - There are no projects. The April redesign deleted the old project list and did not replace it.
-- There is no education. Cal Poly (BS Economics, Quantitative Analysis, Dec 2025) appears only in the résumé PDF.
-- The Arrow role shows one line. The résumé has strong numbers for it (5,000+ manufacturers, 41,000+ models, 45,000+ listings a day from 200+ sources, seller onboarding cut from days to under an hour). None of them reach the site.
+- There is no education. Cal Poly (BS Economics, Quantitative Analysis, Dec 2025) appears only in the resume PDF.
+- The Arrow role shows one line. The resume has strong numbers for it (5,000+ manufacturers, 41,000+ models, 45,000+ listings a day from 200+ sources, seller onboarding cut from days to under an hour). None of them reach the site.
 - The bio and "currently" copy name feelings, not facts ("Tools sharp, dependencies few", "a 200-line SQL migration nobody asked for").
 
 ### Technical
@@ -39,8 +39,8 @@ These came from the owner on 2026-11-09.
 
 - Structure: a home page plus one page per project at `/projects/<slug>`. Project pages are Markdown files.
 - Projects at launch: howlate.la and Engine 13 (a codename). The GIF party game is out. More projects come later, so adding one must be a single new Markdown file plus images.
-- Design: evolve the current look with a sage-on-black palette (owner's pick from the preview canvas, 2026-11-09). Keep near-black and Geist; sage replaces amber as the accent. Add a light theme, a wider grid for project images, and normal capitalization. Remove the cursor dot.
-- Audience: hiring managers and general visitors equally. Projects lead the home page, with a clear path to experience and the résumé.
+- Design: evolve the current look with the Blueprint palette (owner's pick from the design canvas). Keep Geist; mint and green replace amber as the accent. Add a light theme, a wider grid for project images, and normal capitalization. Remove the cursor dot.
+- Audience: hiring managers and general visitors equally. Projects lead the home page, with a clear path to experience and the resume.
 
 - UI rules: build with the owner's `web-ui` skill (`~/Documents/claude-skills/skills/web-ui`) so the result doesn't read as AI output. Svelte uses the skill's CSS layer: Tailwind CSS v4 plus `@heroui/styles`, with BEM classes on native elements. The current look comes back through token overrides, not custom component CSS. Code follows `typescript-best-practices` and `principle-boundary-discipline`, and all copy goes through `unslop`.
 
@@ -58,10 +58,10 @@ These came from the owner on 2026-11-09.
 
 ### Home page, top to bottom
 
-1. Header: `ac` monogram (links home), nav (Projects, Experience, Résumé), Los Angeles time, theme toggle.
+1. Header: `ac` monogram (links home), nav (Projects, Experience, Resume), Los Angeles time, theme toggle.
 2. Intro: name, one paragraph of concrete positioning, and one line on what I'm open to (see open questions).
 3. Selected projects: one card per project. Cover image, name, one-line summary, status, stack. The card links to the write-up.
-4. Experience: Arrow, Cal Poly Orfalea College of Business (research assistant, Summer Undergraduate Research Program), Snap, Axios, Snap Engineering Academy. Each role gets company, title, dates, and one sentence with its strongest number. Résumé download button below.
+4. Experience: Arrow, Cal Poly Orfalea College of Business (research assistant, Summer Undergraduate Research Program), Snap, Axios, Snap Engineering Academy. Each role gets company, title, dates, and one sentence with its strongest number. Resume download button below.
 5. Education: Cal Poly San Luis Obispo, BS Economics, Quantitative Analysis, Sep 2023 to Dec 2025.
 6. Elsewhere: GitHub, LinkedIn, email.
 7. Footer: copyright with the current year, source link to this repo.
@@ -94,22 +94,31 @@ Install `tailwindcss`, `@tailwindcss/vite`, `@heroui/styles`, `tailwind-variants
 
 Change as few tokens as the look needs. Everything else stays HeroUI's default.
 
-| Token | Dark (default) | Light |
+| Token | Light (default) | Dark |
 |---|---|---|
-| `--background` | `#090B0A` | `#EEF1EC` |
-| `--foreground` | `#E9EEEA` | `#0A0D0B` |
-| `--surface` | `#121614` | `#F7F9F5` |
-| `--surface-secondary` | `#1A201C` | `#DFE5DD` |
-| `--muted` | `#879189` | `#56605A` |
-| `--border` | `#26302A` | `#C7D0C6` |
-| `--separator` | `#1E2621` | `#D6DED4` |
-| `--accent` | sage `#9CC59A` | dark sage `#466A47` |
-| `--accent-foreground` | `#090B0A` | `#EEF1EC` |
+| `--background` | `#E7E8E4` | `#0C0D0C` |
+| `--foreground` | `#26252F` | `#E4E7E2` |
+| `--surface` | `#EFF0EC` | `#141614` |
+| `--surface-secondary` | `#E3E4DF` | `#1B1E1B` |
+| `--surface-tertiary`, `--overlay` | `#D9DAD5`, `#EFF0EC` | `#222622`, `#141614` |
+| `--muted` | `#55545F` | `#8E938D` |
+| `--border` | `#C8C9C3` | `#2A2E2A` |
+| `--separator`, `--frame` | `#B4B5AE` | `#343934` |
+| `--accent` (links, focus) | `#0B6B45` | `#45E6A8` |
+| `--mint` (primary button, status markers) | `#34E0A1` | `#45E6A8` |
+| `--mint-foreground` | `#26252F` | `#0C0D0C` |
+| `--dot` (background dot grid) | `rgba(38,37,47,0.09)` | `rgba(228,231,226,0.07)` |
 | `--font-sans`, `--font-mono` | Geist, Geist Mono (self-hosted font files) | same |
 
-Measured contrast: text 16.8:1 dark and 17.1:1 light; muted text at least 5.1:1 on every surface; accent 10.2:1 on black and 5.4:1 on the light background, and button text on the accent passes at the same ratios. The favicon (`static/monogram.svg`) and the OG image script switch from the old paper and ink colors to these.
+Measured contrast (light / dark): text on background 12.3 / 15.6, muted on background 6.1 / 6.2, accent on background 5.3 / 12.2, and the lowest pair, accent on surface-secondary, 5.1 / 10.5. Mint-foreground on mint is 8.9 / 12.2. Every pair is at least 4.5:1.
 
-Preview canvas: https://claude.ai/artifact/NGFSzqPaz9snS5G6EQUrZb (the "Home, sage on black" board is the chosen look). Dark is the default. The theme follows `prefers-color-scheme`, and a header toggle stores the choice in `localStorage`. Use the skill's pre-paint script so the page doesn't flash, and set both `class="dark"` and `data-theme="dark"` on `<html>`. The implementer checks every override pair for contrast and records the ratios in the PR.
+Look: "Blueprint, light, lowercase labels" on the design canvas (a Greptile-inspired direction, chosen 2026-11-09). The body carries an 18px dot grid. The content column has dashed side borders in `--frame` and a solid background. The header and every block end in a dashed rule with a 7px square tick on each frame line (the `frame-block` utility in `src/app.css`). Corners are square and nothing has a shadow.
+
+Lowercase labels: CSS `text-transform: lowercase` applies to the name heading, nav, section labels, buttons, link text, status chips, company and title names, dates, link-row labels, the footer, and the 404 heading. Source text stays in sentence case. Full sentences (intro, summaries, project body text) keep normal case. Secondary links are mono, underlined, and end in an arrow.
+
+Light first: with no stored choice and no system preference, and for visitors without JavaScript, the site is light. The pre-paint script picks the stored choice, then the system setting, then light. Set `data-theme="light"` on `<html>` by default and add `class="dark"` with `data-theme="dark"` for dark.
+
+Earlier sage palette preview: https://claude.ai/artifact/NGFSzqPaz9snS5G6EQUrZb (superseded by Blueprint). The theme follows `prefers-color-scheme`, and a header toggle stores the choice in `localStorage`. Use the skill's pre-paint script so the page doesn't flash, and set `data-theme` (and `class="dark"` for dark) on `<html>`. The implementer checks every override pair for contrast and records the ratios in the PR.
 
 ### Rules from the skill that change the current site
 
@@ -127,7 +136,7 @@ Preview canvas: https://claude.ai/artifact/NGFSzqPaz9snS5G6EQUrZb (the "Home, sa
 | Section | Kit pieces | Not this |
 |---|---|---|
 | Header | Links with the `link` class, a `button--ghost button--icon-only` theme toggle | A sticky glass bar |
-| Home intro | Marketing section recipe: one concrete sentence, no buttons or one at most (Résumé) | Centered headline, gradient, two default buttons |
+| Home intro | Marketing section recipe: one concrete sentence, no buttons or one at most (Resume) | Centered headline, gradient, two default buttons |
 | Selected projects | `card` with a real screenshot, title, one sentence, one status `chip` with a text label | Identical icon cards with vague one-liners |
 | Experience | Prose rows: company and title in `font-medium`, one `text-muted` sentence with a number, dates in `tabular-nums` | A card per job |
 | Project facts | A `separator`-divided row, not nested cards | Cards inside cards |
@@ -150,7 +159,7 @@ Every PR that touches UI must pass the "Don't ship slop" list in the `web-ui` sk
 
 ## Draft copy
 
-Opus drafted this from the résumé and the repos. The owner must check every fact before it ships.
+Opus drafted this from the resume and the repos. The owner must check every fact before it ships.
 
 ### Home intro
 
@@ -196,7 +205,7 @@ Each PR goes on its own branch off `main`. Sonnet implements it with the `web-ui
 | 2 | `redesign/design-system` | Tailwind v4 and `@heroui/styles` setup, token overrides for both themes, self-hosted Geist and Geist Mono (copy the font files into the repo under the SIL Open Font License and remove the `geist` npm package, which pulls in Next.js and most of the audit findings; point `scripts/generate-og.mjs` at the copied files), pre-paint theme script, header toggle, `@gravity-ui/icons`, focus ring, skip link. Port the current components to kit classes and delete their scoped CSS. | Every token pair passes WCAG AA, with ratios in the PR. No theme flash on reload. Keyboard tabbing shows focus on every link. Slop gate passes. |
 | 3 | `redesign/projects` | mdsvex, frontmatter type and parser, `src/content/projects/`, `ProjectCard`, `/projects`, `/projects/[slug]`, `Seo.svelte`, 404 page, per-project OG images, enhanced images | A malformed frontmatter field fails the build. A placeholder project renders at its slug and appears in the sitemap. |
 | 4 | `redesign/home` | New home layout: intro, selected projects, experience with one line each, education, elsewhere. JSON-LD `Person` | The home page matches the outline above, using the draft copy. |
-| 5 | `redesign/content` | The two write-ups, real images, final copy, updated résumé if needed | Owner has signed off on every sentence. |
+| 5 | `redesign/content` | The two write-ups, real images, final copy, updated resume if needed | Owner has signed off on every sentence. |
 | 6 | `redesign/polish` | Lighthouse pass (target 95+ in every category on mobile), README update, remove dead code, final slop gate across every page | Lighthouse report and slop-gate screenshots attached to the PR. |
 
 PRs 1 to 4 can proceed now. PR 5 can ship the howlate.la write-up first. The Engine 13 card and write-up ship when the owner supplies their role and media.

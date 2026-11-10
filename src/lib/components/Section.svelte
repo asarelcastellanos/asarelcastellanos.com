@@ -10,7 +10,7 @@
 	let { title, id, children }: Props = $props();
 </script>
 
-<section {id} class="flex scroll-mt-4 flex-col gap-4">
-	<h2 class="text-base font-semibold">{title}</h2>
+<section {id} class="frame-block flex scroll-mt-4 flex-col gap-5 pt-14 pb-16 sm:pb-18">
+	<h2 class="section-label">{title}</h2>
 	{@render children()}
 </section>

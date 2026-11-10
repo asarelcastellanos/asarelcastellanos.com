@@ -21,10 +21,13 @@
 	Skip to main content
 </a>
 
-<div class="mx-auto flex min-h-screen max-w-6xl flex-col px-4 sm:px-6">
-	<Header />
-	<div class="flex-1">
-		{@render children()}
+<!-- The outer div leaves a 16px gutter so the dot grid shows beside the column on a phone. The dashed side borders are the frame lines. -->
+<div class="px-4">
+	<div class="mx-auto flex min-h-screen max-w-6xl flex-col border-x border-dashed border-frame bg-background">
+		<Header />
+		<div class="flex-1">
+			{@render children()}
+		</div>
+		<Footer />
 	</div>
-	<Footer />
 </div>

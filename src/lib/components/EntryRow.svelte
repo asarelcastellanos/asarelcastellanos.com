@@ -13,12 +13,12 @@
 
 <!-- Phone: company and title, sentence, dates, stacked. From md: three columns on one line. -->
 <li
-	class="flex flex-col gap-2 border-t border-separator py-5 last:border-b md:grid md:grid-cols-[16rem_1fr_auto] md:gap-x-8 md:gap-y-0"
+	class="flex flex-col gap-2 border-t border-dashed border-frame py-5 md:grid md:grid-cols-[16rem_1fr_auto] md:gap-x-8 md:gap-y-0"
 >
 	<div class="flex flex-col gap-0.5">
-		<span class="font-medium">{organization}</span>
-		<span class="text-sm text-muted">{title}</span>
+		<span class="font-semibold lowercase">{organization}</span>
+		<span class="text-sm text-muted lowercase">{title}</span>
 	</div>
-	<p class="text-sm leading-relaxed text-pretty {mutedSummary ? 'text-muted' : ''}">{summary}</p>
-	<span class="font-mono text-sm text-muted whitespace-nowrap tabular-nums md:text-right">{dates}</span>
+	<p class="text-[15px] leading-relaxed text-pretty {mutedSummary ? 'text-muted' : ''}">{summary}</p>
+	<span class="font-mono text-[13px] text-muted whitespace-nowrap tabular-nums lowercase md:text-right">{dates}</span>
 </li>

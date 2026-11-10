@@ -4,7 +4,7 @@
 	const year = new Date().getFullYear();
 </script>
 
-<footer class="mt-24 flex flex-wrap justify-between gap-2 border-t border-separator pt-6 pb-12 text-sm text-muted">
+<footer class="flex flex-wrap justify-between gap-2 px-5 pt-6 pb-10 font-mono text-xs text-muted lowercase sm:px-8">
 	<span>© {year} {SITE_AUTHOR}</span>
-	<a href={SOURCE_URL} target="_blank" rel="noreferrer" class="hover:text-foreground">Source on GitHub</a>
+	<a href={SOURCE_URL} target="_blank" rel="noreferrer" class="link-mono hover:text-accent">Source on GitHub</a>
 </footer>

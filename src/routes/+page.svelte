@@ -45,39 +45,40 @@
 	{@html `<script type="application/ld+json">${personScript}</script>`}
 </svelte:head>
 
-<main id="main" class="flex flex-col gap-16 pt-16 sm:pt-24 md:gap-24">
-	<section class="flex max-w-2xl flex-col gap-5 sm:gap-6">
-		<h1 class="text-3xl font-semibold tracking-tight text-balance sm:text-4xl">{SITE_AUTHOR}</h1>
-		<p class="text-lg leading-relaxed text-pretty">
+<main id="main" class="flex flex-col">
+	<section class="frame-block flex flex-col gap-6 pt-16 pb-16 sm:pt-24 sm:pb-24">
+		<h1 class="max-w-3xl text-5xl leading-[0.98] font-extrabold tracking-[-0.045em] text-balance lowercase sm:text-6xl lg:text-7xl">{SITE_AUTHOR}</h1>
+		<p class="max-w-2xl text-lg leading-relaxed text-pretty">
 			Data analyst and engineer in Los Angeles, with an economics degree and a software background.
 			Most recently, at Arrow, I designed the catalog data model for an equipment marketplace with
 			41,000+ models and used an LLM to cut seller onboarding from days to under an hour. Outside
 			work I build things like
-			<a class="link text-accent" href="/projects/howlate-la">howlate.la</a>, which records every LA
+			<a class="text-accent underline underline-offset-4" href="/projects/howlate-la">howlate.la</a>, which records every LA
 			Metro bus and train and grades each one against the timetable.
 		</p>
-		<p class="text-muted">
-			Open to data analyst, BI, and analytics engineering roles in Los Angeles, remote, or anywhere I'd relocate for. Bilingual in English and Spanish.
+		<p class="flex max-w-2xl items-start gap-2.5 text-muted">
+			<span aria-hidden="true" class="mt-[0.55em] size-2 shrink-0 bg-mint"></span>
+			<span>Open to data analyst, BI, and analytics engineering roles in Los Angeles, remote, or anywhere I'd relocate for. Bilingual in English and Spanish.</span>
 		</p>
 		<div class="flex flex-wrap items-center gap-x-5 gap-y-3 pt-2">
 			<a
-				class={buttonVariants({ variant: 'primary', size: 'lg' })}
+				class="{buttonVariants({ variant: 'primary', size: 'lg' })} lowercase"
 				href="/asarelcastellanos_resume.pdf"
 				download
 			>
 				<Icon name="arrow-down-to-line" />
-				Download résumé
+				Download resume
 			</a>
-			<a class="inline-flex min-h-11 items-center text-muted hover:text-foreground" href="mailto:{EMAIL}">
+			<a class="link-mono inline-flex min-h-11 items-center text-sm" href="mailto:{EMAIL}">
 				{EMAIL}
 			</a>
 		</div>
 	</section>
 
-	<section id="projects" class="flex scroll-mt-4 flex-col gap-6">
+	<section id="projects" class="frame-block flex scroll-mt-4 flex-col gap-6 pt-14 pb-16 sm:pb-18">
 		<div class="flex items-baseline justify-between gap-4">
-			<h2 class="text-base font-semibold">Selected projects</h2>
-			<a class="link text-sm text-muted hover:text-foreground" href="/projects">All projects</a>
+			<h2 class="section-label">Selected projects</h2>
+			<a class="link-mono text-[13px] text-muted" href="/projects">All projects</a>
 		</div>
 		<!-- auto-fit with a 300px minimum keeps a lone card from filling the row; the cap sets its width. -->
 		<ul class="grid grid-cols-[repeat(auto-fit,minmax(min(100%,300px),1fr))] gap-6">
@@ -100,13 +101,8 @@
 				/>
 			{/each}
 		</ul>
-		<a
-			class="{buttonVariants({ variant: 'outline', size: 'md' })} mt-2 self-start"
-			href="/asarelcastellanos_resume.pdf"
-			download
-		>
-			<Icon name="arrow-down-to-line" />
-			Full résumé (PDF)
+		<a class="link-mono mt-1 inline-flex min-h-11 items-center self-start text-[13px]" href="/asarelcastellanos_resume.pdf" download>
+			Full resume (PDF)
 		</a>
 	</Section>
 
@@ -125,7 +121,7 @@
 	</Section>
 
 	<Section title="Elsewhere">
-		<div class="flex max-w-prose flex-col border-b border-separator">
+		<div class="flex max-w-prose flex-col border-b border-dashed border-frame">
 			<LinkRow label="GitHub" meta="asarelcastellanos" href={GITHUB_URL} />
 			<LinkRow label="LinkedIn" meta="in/asarelcastellanos" href={LINKEDIN_URL} />
 			<LinkRow label="Email" meta={EMAIL} href="mailto:{EMAIL}" />

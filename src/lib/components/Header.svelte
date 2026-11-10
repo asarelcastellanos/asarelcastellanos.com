@@ -22,31 +22,32 @@
 		return () => clearInterval(id);
 	});
 
-	const navLinkClass = 'link min-h-11 text-sm text-muted hover:text-foreground';
+	const navLinkClass =
+		'inline-flex min-h-11 items-center font-mono text-[13px] tracking-[0.02em] text-muted lowercase hover:text-foreground';
 </script>
 
-<header class="flex flex-wrap items-center justify-between gap-x-4 gap-y-2 py-4">
-	<div class="flex flex-wrap items-center gap-x-4 gap-y-2 sm:gap-x-8">
+<header class="frame-block flex items-center justify-between gap-x-3 py-3">
+	<div class="flex items-center gap-x-3 sm:gap-x-8">
 		<a
 			href="/"
 			aria-label="Home"
-			class="inline-flex min-h-11 items-center rounded-md text-2xl leading-none font-semibold tracking-tighter"
+			class="inline-flex min-h-11 items-center text-2xl leading-none font-bold tracking-[-0.08em]"
 		>
 			ac
 		</a>
-		<nav aria-label="Main" class="flex gap-4 sm:gap-6">
+		<nav aria-label="Main" class="flex gap-3 sm:gap-7">
 			<a
 				href="/projects"
 				class={navLinkClass}
 				aria-current={page.url.pathname.startsWith('/projects') ? 'page' : undefined}>Projects</a
 			>
 			<a href="/#experience" class={navLinkClass}>Experience</a>
-			<a href="/asarelcastellanos_resume.pdf" class={navLinkClass}>Résumé</a>
+			<a href="/asarelcastellanos_resume.pdf" class={navLinkClass}>Resume</a>
 		</nav>
 	</div>
 	<div class="flex items-center gap-3">
 		<!-- Hidden below 640px so the header stays on one row on a phone. -->
-		<p class="hidden gap-2 font-mono sm:flex text-sm whitespace-nowrap text-muted tabular-nums">
+		<p class="hidden gap-2 font-mono text-[13px] whitespace-nowrap text-muted tabular-nums lowercase sm:flex">
 			<span>Los Angeles</span>
 			<span aria-hidden="true">·</span>
 			<span>

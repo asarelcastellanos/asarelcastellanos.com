@@ -19,7 +19,7 @@ const H = 630;
 
 const homeSvg = `
 <svg xmlns="http://www.w3.org/2000/svg" width="${W}" height="${H}" viewBox="0 0 ${W} ${H}">
-  <rect width="${W}" height="${H}" fill="#090B0A"/>
+  <rect width="${W}" height="${H}" fill="#E7E8E4"/>
   <text
     x="${W / 2}"
     y="${H / 2 + 16}"
@@ -27,17 +27,18 @@ const homeSvg = `
     font-weight="600"
     font-size="340"
     letter-spacing="-27"
-    fill="#E9EEEA"
+    fill="#26252F"
     text-anchor="middle"
     dominant-baseline="middle"
   >ac</text>
+  <rect x="${W / 2 + 214}" y="${H / 2 + 74}" width="30" height="30" fill="#34E0A1"/>
   <text
     x="60"
     y="${H - 56}"
     font-family="Geist"
     font-weight="400"
     font-size="24"
-    fill="#879189"
+    fill="#55545F"
     letter-spacing="0.5"
   >asarelcastellanos.com</text>
   <text
@@ -46,7 +47,7 @@ const homeSvg = `
     font-family="Geist"
     font-weight="400"
     font-size="24"
-    fill="#879189"
+    fill="#55545F"
     text-anchor="end"
     letter-spacing="0.5"
   >Los Angeles</text>
@@ -109,11 +110,11 @@ function projectSvg(meta) {
 	const summaryY = titleY + (titleLines.length - 1) * (TITLE_SIZE + 8) + 80;
 	return `
 <svg xmlns="http://www.w3.org/2000/svg" width="${W}" height="${H}" viewBox="0 0 ${W} ${H}">
-  <rect width="${W}" height="${H}" fill="#090B0A"/>
-  <text font-family="Geist" font-weight="600" font-size="${TITLE_SIZE}" letter-spacing="-2" fill="#E9EEEA">${tspans(titleLines, PAD, titleY, TITLE_SIZE + 8)}</text>
-  <text font-family="Geist" font-weight="400" font-size="${SUMMARY_SIZE}" fill="#879189">${tspans(summaryLines, PAD, summaryY, SUMMARY_SIZE + 14)}</text>
-  <text x="${PAD}" y="${H - 56}" font-family="Geist" font-weight="400" font-size="24" fill="#879189" letter-spacing="0.5">asarelcastellanos.com</text>
-  <text x="${W - PAD}" y="${H - 56}" font-family="Geist" font-weight="500" font-size="24" fill="#9CC59A" text-anchor="end">${escapeXml(meta.status)}</text>
+  <rect width="${W}" height="${H}" fill="#E7E8E4"/>
+  <text font-family="Geist" font-weight="600" font-size="${TITLE_SIZE}" letter-spacing="-2" fill="#26252F">${tspans(titleLines, PAD, titleY, TITLE_SIZE + 8)}</text>
+  <text font-family="Geist" font-weight="400" font-size="${SUMMARY_SIZE}" fill="#55545F">${tspans(summaryLines, PAD, summaryY, SUMMARY_SIZE + 14)}</text>
+  <text x="${PAD}" y="${H - 56}" font-family="Geist" font-weight="400" font-size="24" fill="#55545F" letter-spacing="0.5">asarelcastellanos.com</text>
+  <text x="${W - PAD}" y="${H - 56}" font-family="Geist" font-weight="500" font-size="24" fill="#0B6B45" text-anchor="end">${escapeXml(meta.status)}</text>
 </svg>
 `;
 }

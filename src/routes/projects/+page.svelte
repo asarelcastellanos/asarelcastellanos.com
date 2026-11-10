@@ -11,13 +11,13 @@
 
 <Seo title={pageTitle('Projects')} {description} path="/projects" />
 
-<main id="main" class="flex flex-col gap-8 pt-16 sm:pt-24">
-	<div class="flex flex-col gap-1">
-		<h1 class="text-2xl font-semibold tracking-tight">Projects</h1>
+<main id="main" class="flex flex-col">
+	<div class="frame-block flex flex-col gap-1 pt-16 pb-12 sm:pt-24">
+		<h1 class="text-2xl font-semibold tracking-tight lowercase">Projects</h1>
 		<p class="text-sm text-muted">{description}</p>
 	</div>
 
-	<ul class="grid gap-6 sm:grid-cols-2">
+	<ul class="frame-block grid gap-6 pt-12 pb-16 sm:grid-cols-2">
 		{#each data.projects as project (project.slug)}
 			<li class="grid">
 				<ProjectCard {project} />

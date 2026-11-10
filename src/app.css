@@ -1,29 +1,14 @@
 @import 'tailwindcss';
 @import '@heroui/styles';
 
-/* Self-hosted Geist. The files and their license live in src/lib/fonts. */
+/* Self-hosted Geist. The files and their license live in src/lib/fonts. One variable file covers every
+   sans weight the site uses (400 to 800), which is smaller than separate files per weight. */
 @font-face {
 	font-family: 'Geist';
 	font-style: normal;
-	font-weight: 400;
+	font-weight: 100 900;
 	font-display: swap;
-	src: url('./lib/fonts/Geist-Regular.woff2') format('woff2');
-}
-
-@font-face {
-	font-family: 'Geist';
-	font-style: normal;
-	font-weight: 500;
-	font-display: swap;
-	src: url('./lib/fonts/Geist-Medium.woff2') format('woff2');
-}
-
-@font-face {
-	font-family: 'Geist';
-	font-style: normal;
-	font-weight: 600;
-	font-display: swap;
-	src: url('./lib/fonts/Geist-SemiBold.woff2') format('woff2');
+	src: url('./lib/fonts/Geist-Variable.woff2') format('woff2');
 }
 
 @font-face {
@@ -47,43 +32,137 @@
 	--font-mono: 'Geist Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
 }
 
-/* Token overrides. Light is the kit's :root theme. Dark comes second so it wins on html.dark. */
+/* Expose the tokens the kit does not know about, so components use border-frame, bg-mint, and so on. */
+@theme inline {
+	--color-frame: var(--frame);
+	--color-mint: var(--mint);
+	--color-mint-foreground: var(--mint-foreground);
+	--color-dot: var(--dot);
+}
+
+/* Blueprint tokens. Light is the default theme. Dark comes second so it wins on html.dark. */
 :root {
-	--background: #eef1ec;
-	--foreground: #0a0d0b;
-	--surface: #f7f9f5;
-	--surface-secondary: #dfe5dd;
-	--muted: #56605a;
-	--border: #c7d0c6;
-	--separator: #d6ded4;
-	--accent: #466a47;
-	--accent-foreground: #eef1ec;
-	/* Neutral controls such as the ghost button hover use the same sage as surface-secondary. */
+	--background: #e7e8e4;
+	--foreground: #26252f;
+	--surface: #eff0ec;
+	--surface-secondary: #e3e4df;
+	--surface-tertiary: #d9dad5;
+	--overlay: #eff0ec;
+	--muted: #55545f;
+	--border: #c8c9c3;
+	--separator: #b4b5ae;
+	--frame: #b4b5ae;
+	--accent: #0b6b45;
+	--accent-foreground: #eff0ec;
+	--mint: #34e0a1;
+	--mint-foreground: #26252f;
+	--dot: rgba(38, 37, 47, 0.09);
+	/* Neutral controls such as the ghost button hover use the same step as surface-secondary. */
 	--default: var(--surface-secondary);
 	--default-foreground: var(--foreground);
 }
 
 .dark,
 [data-theme='dark'] {
-	--background: #090b0a;
-	--foreground: #e9eeea;
-	--surface: #121614;
-	--surface-secondary: #1a201c;
-	--muted: #879189;
-	--border: #26302a;
-	--separator: #1e2621;
-	--accent: #9cc59a;
-	--accent-foreground: #090b0a;
+	--background: #0c0d0c;
+	--foreground: #e4e7e2;
+	--surface: #141614;
+	--surface-secondary: #1b1e1b;
+	--surface-tertiary: #222622;
+	--overlay: #141614;
+	--muted: #8e938d;
+	--border: #2a2e2a;
+	--separator: #343934;
+	--frame: #343934;
+	--accent: #45e6a8;
+	--accent-foreground: #0c0d0c;
+	--mint: #45e6a8;
+	--mint-foreground: #0c0d0c;
+	--dot: rgba(228, 231, 226, 0.07);
 }
 
-/* What the kit lacks: page-level defaults and a focus ring on plain links. */
+/* What the kit lacks: page-level defaults, the dot grid, and a square focus ring. */
 @layer base {
 	html {
 		@apply bg-background font-sans text-foreground antialiased;
 	}
+
+	body {
+		@apply min-h-screen;
+		background-image: radial-gradient(var(--dot) 1px, transparent 1.4px);
+		background-size: 18px 18px;
+	}
 }
 
+/* Unlayered, so it beats the kit's box-shadow ring on links and buttons. */
 a:focus-visible,
-button:focus-visible {
-	@apply focus-ring;
+button:focus-visible,
+.button:focus-visible:not([data-focused]) {
+	outline: 2px solid var(--accent);
+	outline-offset: 2px;
+	box-shadow: none;
+}
+
+/* Every button is rectangular. The primary one takes the mint fill. */
+.button {
+	border-radius: 2px;
+}
+
+.button--primary {
+	--button-bg: var(--mint);
+	--button-bg-hover: color-mix(in srgb, var(--mint) 88%, var(--foreground));
+	--button-bg-pressed: var(--button-bg-hover);
+	--button-fg: var(--mint-foreground);
+}
+
+/* Square corners inside rendered Markdown. */
+.typography-prose :is(pre, img, code) {
+	border-radius: 0;
+}
+
+/* A block of the page frame. It ends in a dashed rule with a small square on each frame line. */
+@utility frame-block {
+	@apply relative border-b border-dashed border-frame px-5 sm:px-8;
+
+	&::before,
+	&::after {
+		content: '';
+		pointer-events: none;
+		position: absolute;
+		bottom: -4px;
+		width: 7px;
+		height: 7px;
+		box-sizing: border-box;
+		border: 1px solid var(--frame);
+		background: var(--background);
+	}
+
+	&::before {
+		left: -4px;
+	}
+
+	&::after {
+		right: -4px;
+	}
+}
+
+/* Small mono label above a group of content. */
+@utility section-label {
+	@apply font-mono text-[13px] font-medium text-muted lowercase;
+}
+
+/* Secondary link: mono, underlined, with an arrow. The arrow is generated and carries no text for screen readers. */
+@utility link-mono {
+	@apply font-mono underline decoration-1 underline-offset-4 lowercase;
+
+	&::after {
+		content: '\2192' / '';
+		display: inline-block;
+		margin-left: 0.4em;
+		text-decoration: none;
+	}
+
+	&:hover {
+		color: var(--accent);
+	}
 }
