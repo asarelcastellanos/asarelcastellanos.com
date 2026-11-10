@@ -2,7 +2,7 @@
 	import Icon from '$lib/components/Icon.svelte';
 	import Seo from '$lib/components/Seo.svelte';
 	import StatusChip from '$lib/components/StatusChip.svelte';
-	import { formatTimeline, projectPath } from '$lib/content/projects';
+	import { formatTimeline, projectPath } from '$lib/content/display';
 	import { pageTitle } from '$lib/site';
 	import type { PageProps } from './$types';
 

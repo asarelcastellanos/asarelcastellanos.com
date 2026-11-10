@@ -1,6 +1,6 @@
 <script lang="ts">
 	import StatusChip from '$lib/components/StatusChip.svelte';
-	import { projectPath, type ProjectCardData } from '$lib/content/projects';
+	import { projectPath, type ProjectCardData } from '$lib/content/display';
 
 	type Props = {
 		project: ProjectCardData;

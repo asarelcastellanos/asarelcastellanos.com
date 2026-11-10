@@ -21,7 +21,10 @@ const config = {
 	kit: {
 		// Pinned so the build doesn't depend on the local Node version. Every page is prerendered,
 		// so this runtime only serves the fallback function.
-		adapter: adapter({ runtime: 'nodejs24.x' })
+		adapter: adapter({ runtime: 'nodejs24.x' }),
+		// Inline the stylesheet (about 69KB, 10KB compressed) into each page, so the first paint does not
+		// wait on a second request. Raise this if app.css grows past it, or the CSS goes back to a separate file.
+		inlineStyleThreshold: 100_000
 	}
 };
 

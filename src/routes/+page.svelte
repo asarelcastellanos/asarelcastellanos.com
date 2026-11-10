@@ -51,10 +51,7 @@
 		<p class="max-w-2xl text-lg leading-relaxed text-pretty">
 			Data analyst and engineer in Los Angeles, with an economics degree and a software background.
 			Most recently, at Arrow, I designed the catalog data model for an equipment marketplace with
-			41,000+ models and used an LLM to cut seller onboarding from days to under an hour. Outside
-			work I build things like
-			<a class="text-accent underline underline-offset-4" href="/projects/howlate-la">howlate.la</a>, which records every LA
-			Metro bus and train and grades each one against the timetable.
+			41,000+ models and used an LLM to cut seller onboarding from days to under an hour.
 		</p>
 		<p class="flex max-w-2xl items-start gap-2.5 text-muted">
 			<span aria-hidden="true" class="mt-[0.55em] size-2 shrink-0 bg-mint"></span>
@@ -75,20 +72,22 @@
 		</div>
 	</section>
 
-	<section id="projects" class="frame-block flex scroll-mt-4 flex-col gap-6 pt-14 pb-16 sm:pb-18">
-		<div class="flex items-baseline justify-between gap-4">
-			<h2 class="section-label">Selected projects</h2>
-			<a class="link-mono text-[13px] text-muted" href="/projects">All projects</a>
-		</div>
-		<!-- auto-fit with a 300px minimum keeps a lone card from filling the row; the cap sets its width. -->
-		<ul class="grid grid-cols-[repeat(auto-fit,minmax(min(100%,300px),1fr))] gap-6">
-			{#each data.projects as project (project.slug)}
-				<li class="grid max-w-md">
-					<ProjectCard {project} />
-				</li>
-			{/each}
-		</ul>
-	</section>
+	{#if data.projects.length > 0}
+		<section id="projects" class="frame-block flex scroll-mt-4 flex-col gap-6 pt-14 pb-16 sm:pb-18">
+			<div class="flex items-baseline justify-between gap-4">
+				<h2 class="section-label">Selected projects</h2>
+				<a class="link-mono text-[13px] text-muted" href="/projects">All projects</a>
+			</div>
+			<!-- auto-fit with a 300px minimum keeps a lone card from filling the row; the cap sets its width. -->
+			<ul class="grid grid-cols-[repeat(auto-fit,minmax(min(100%,300px),1fr))] gap-6">
+				{#each data.projects as project (project.slug)}
+					<li class="grid max-w-md">
+						<ProjectCard {project} />
+					</li>
+				{/each}
+			</ul>
+		</section>
+	{/if}
 
 	<Section id="experience" title="Experience">
 		<ul class="flex flex-col">

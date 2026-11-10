@@ -1,5 +1,5 @@
 import { isYearMonth, type YearMonth } from '$lib/content/frontmatter';
-import { formatMonth } from '$lib/content/projects';
+import { formatMonth } from '$lib/content/display';
 
 /** An end date is a month, or null for "still going". */
 export type EndDate = YearMonth | null;
