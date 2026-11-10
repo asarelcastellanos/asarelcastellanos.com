@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { page } from '$app/state';
 	import ThemeToggle from '$lib/components/ThemeToggle.svelte';
 
 	// Empty during prerender so the static HTML carries no build-time clock.
@@ -25,7 +26,7 @@
 </script>
 
 <header class="flex flex-wrap items-center justify-between gap-x-4 gap-y-2 py-4">
-	<div class="flex flex-wrap items-center gap-x-8 gap-y-2">
+	<div class="flex flex-wrap items-center gap-x-4 gap-y-2 sm:gap-x-8">
 		<a
 			href="/"
 			aria-label="Home"
@@ -33,7 +34,12 @@
 		>
 			ac
 		</a>
-		<nav aria-label="Main" class="flex gap-6">
+		<nav aria-label="Main" class="flex gap-4 sm:gap-6">
+			<a
+				href="/projects"
+				class={navLinkClass}
+				aria-current={page.url.pathname.startsWith('/projects') ? 'page' : undefined}>Projects</a
+			>
 			<a href="/#experience" class={navLinkClass}>Experience</a>
 			<a href="/asarelcastellanos_resume.pdf" class={navLinkClass}>Résumé</a>
 		</nav>
