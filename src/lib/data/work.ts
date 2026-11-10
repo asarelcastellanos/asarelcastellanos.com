@@ -87,12 +87,5 @@ export const education: readonly Entry[] = [
 			'Econometrics, time series forecasting, statistical computing in R, regression analysis, and design of experiments.',
 		start: month('2023-06'),
 		end: month('2025-12')
-	},
-	{
-		organization: 'Santa Monica College',
-		title: 'AS Computer Science, AA-T Economics',
-		summary: 'Tutored 13 computer science courses in five languages before transferring to Cal Poly.',
-		start: month('2021-06'),
-		end: month('2023-06')
 	}
 ];

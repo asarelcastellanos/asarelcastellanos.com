@@ -9,21 +9,24 @@
 		%sveltekit.head%
 		<script>
 			// Placed after the stylesheet links so --background is readable. Runs before first paint so the page never flashes the wrong theme.
-			// Order: stored choice, then the system setting, then light.
+			// A stored "light" or "dark" wins. Otherwise the preference is "system" and the OS setting decides.
+			// src/lib/theme.ts keeps the same rules and storage key, and follows later OS changes.
 			(function () {
-				var theme = null;
+				var preference = 'system';
 				try {
 					var stored = localStorage.getItem('theme');
-					if (stored === 'light' || stored === 'dark') theme = stored;
+					if (stored === 'light' || stored === 'dark') preference = stored;
 				} catch (error) {
 					// Storage can be blocked. Fall through to the system setting.
 				}
-				if (theme === null) {
+				var theme = preference;
+				if (preference === 'system') {
 					theme = matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
 				}
 				var root = document.documentElement;
 				root.classList.toggle('dark', theme === 'dark');
 				root.dataset.theme = theme;
+				root.dataset.themePreference = preference;
 				var background = getComputedStyle(root).getPropertyValue('--background').trim();
 				var meta = document.querySelector('meta[name="theme-color"]');
 				if (meta && background) meta.setAttribute('content', background);

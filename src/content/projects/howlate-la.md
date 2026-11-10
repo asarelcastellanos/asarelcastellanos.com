@@ -43,4 +43,6 @@ I run it like a team project. A release plan sets out each version from 0.1.0 to
 
 ## What's next
 
-Collection started on 18 August 2026 and has missed one 16-hour stretch since. The grading pipeline is built and is working through the backlog. Next is the public site at howlate.la, then version 1.0.
+Collection started on 18 August 2026 and has missed one 16-hour stretch since, on 21 August, when Metro's feed held a connection open and sent nothing. The pipeline has graded every day collected through 8 November, 83 days in all, and a scheduled job now grades each new day at 5am Pacific.
+
+Next is the public site. The first launch gives every line a page with an hour-of-week chart and the delay along its route, plus a ranking of lines by reliability. After that come a commute tool that answers "which bus do I catch to arrive by 9:00", a replay of a full day of Metro in 60 seconds, and then version 1.0.
