@@ -3,13 +3,11 @@
 	import Section from '$lib/components/Section.svelte';
 	import Work from '$lib/components/Work.svelte';
 	import LinkRow from '$lib/components/LinkRow.svelte';
+	import Seo from '$lib/components/Seo.svelte';
 	import { SITE_DESCRIPTION, SITE_TITLE } from '$lib/site';
 </script>
 
-<svelte:head>
-	<title>{SITE_TITLE}</title>
-	<meta name="description" content={SITE_DESCRIPTION} />
-</svelte:head>
+<Seo title={SITE_TITLE} description={SITE_DESCRIPTION} path="/" />
 
 <main id="main" class="flex flex-col gap-16 pt-16 sm:pt-24">
 	<Bio />
