@@ -1,3 +1,7 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" fill="none">
-  <text x="32" y="44" font-family="Geist, ui-sans-serif, system-ui, sans-serif" font-size="36" font-weight="600" fill="#F2EDE4" text-anchor="middle" letter-spacing="-3">ac</text>
+  <style>
+    text { fill: #e9eeea; }
+    @media (prefers-color-scheme: light) { text { fill: #0a0d0b; } }
+  </style>
+  <text x="32" y="44" font-family="Geist, ui-sans-serif, system-ui, sans-serif" font-size="36" font-weight="600" text-anchor="middle" letter-spacing="-3">ac</text>
 </svg>

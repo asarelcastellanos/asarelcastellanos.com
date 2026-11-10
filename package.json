@@ -13,14 +13,18 @@
 		"og": "node scripts/generate-og.mjs"
 	},
 	"devDependencies": {
+		"@gravity-ui/icons": "2.23.1",
+		"@heroui/styles": "3.2.7",
 		"@resvg/resvg-js": "^2.6.2",
 		"@sveltejs/adapter-vercel": "^6.3.5",
 		"@sveltejs/kit": "^2.57.0",
 		"@sveltejs/vite-plugin-svelte": "^7.0.0",
+		"@tailwindcss/vite": "4.3.5",
 		"@types/node": "^25.6.0",
-		"geist": "^1.7.0",
 		"svelte": "^5.55.2",
 		"svelte-check": "^4.4.6",
+		"tailwind-variants": "4.0.2",
+		"tailwindcss": "4.3.5",
 		"typescript": "^6.0.2",
 		"vite": "^8.0.7"
 	}
