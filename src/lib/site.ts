@@ -2,8 +2,13 @@
 export const SITE_URL = 'https://www.asarelcastellanos.com';
 export const SITE_TITLE = 'Asarel Castellanos';
 export const SITE_AUTHOR = 'Asarel Castellanos';
+/** The first sentence and a half of the home intro. */
 export const SITE_DESCRIPTION =
-	"Full-stack engineer in Los Angeles. I'm equally at home in a React component, a Python script, or a 200-line SQL migration nobody asked for.";
+	'Full-stack engineer in Los Angeles. At Arrow I build the crawlers and ingestion pipelines behind an equipment marketplace.';
+export const SOURCE_URL = 'https://github.com/asarelcastellanos/asarelcastellanos.com';
+export const GITHUB_URL = 'https://github.com/asarelcastellanos';
+export const LINKEDIN_URL = 'https://www.linkedin.com/in/asarelcastellanos/';
+export const EMAIL = 'asarelc@gmail.com';
 
 export type OgImage = {
 	/** Path under static/, starting with a slash. */

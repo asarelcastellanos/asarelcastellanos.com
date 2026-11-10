@@ -57,7 +57,7 @@ export function projectPath(slug: string): string {
 
 const MONTHS = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'] as const;
 
-function formatMonth(value: YearMonth): string {
+export function formatMonth(value: YearMonth): string {
 	const year = value.slice(0, 4);
 	const month = MONTHS[Number(value.slice(5, 7)) - 1];
 	return `${month} ${year}`;
