@@ -5,25 +5,15 @@
 	import Work from '$lib/components/Work.svelte';
 	import LinkRow from '$lib/components/LinkRow.svelte';
 	import Footer from '$lib/components/Footer.svelte';
-	import Cursor from '$lib/components/Cursor.svelte';
-
-	let mounted = $state(false);
-	$effect(() => {
-		mounted = true;
-	});
+	import { SITE_DESCRIPTION, SITE_TITLE } from '$lib/site';
 </script>
 
 <svelte:head>
-	<title>Asarel Castellanos</title>
-	<meta
-		name="description"
-		content="Full-stack engineer in Los Angeles. I'm equally at home in a React component, a Python script, or a 200-line SQL migration nobody asked for."
-	/>
+	<title>{SITE_TITLE}</title>
+	<meta name="description" content={SITE_DESCRIPTION} />
 </svelte:head>
 
-<Cursor />
-
-<main class:mounted>
+<main>
 	<Header />
 	<Bio />
 
@@ -59,13 +49,6 @@
 		margin: 0 auto;
 		padding: 32px 24px 48px;
 		min-height: 100vh;
-		text-transform: lowercase;
-		opacity: 0;
-		transition: opacity var(--dur-slow) var(--ease-out);
-	}
-
-	main.mounted {
-		opacity: 1;
 	}
 
 	.links {
@@ -80,12 +63,5 @@
 		color: var(--fg);
 		max-width: 560px;
 		margin: 0;
-	}
-
-	@media (prefers-reduced-motion: reduce) {
-		main {
-			opacity: 1;
-			transition: none;
-		}
 	}
 </style>
