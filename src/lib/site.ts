@@ -26,5 +26,5 @@ export function pageTitle(name: string): string {
 	return `${name} | ${SITE_TITLE}`;
 }
 
-/** Fixed pages listed in sitemap.xml. The sitemap route adds one entry per project. */
-export const SITE_PAGES = ['/', '/projects'] as const satisfies readonly string[];
+/** Fixed pages listed in sitemap.xml. The sitemap route adds /projects and one entry per project once one is published. */
+export const SITE_PAGES = ['/'] as const satisfies readonly string[];

@@ -4,10 +4,6 @@ export type Theme = (typeof THEMES)[number];
 
 export const THEME_STORAGE_KEY = 'theme';
 
-export function isTheme(value: unknown): value is Theme {
-	return THEMES.some((theme) => theme === value);
-}
-
 export function nextTheme(theme: Theme): Theme {
 	switch (theme) {
 		case 'light':

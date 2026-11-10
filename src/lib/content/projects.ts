@@ -1,8 +1,10 @@
 import type { Component } from 'svelte';
-import { parseProjectMeta, slugFromPath, type ProjectMeta, type YearMonth } from './frontmatter.ts';
+import { parseProjectMeta, slugFromPath, type ProjectMeta } from './frontmatter.ts';
+import type { ProjectCardData } from './display.ts';
 
 // The only place that reads project files. Drafts are loaded and validated too, then left out below,
 // so a broken draft still fails the build. The repo is public, so a draft is not a secret either way.
+// This module imports every compiled body. Browser code that only needs a helper imports display.ts.
 const sources: Record<string, string> = import.meta.glob('/src/content/projects/*.md', {
 	query: '?raw',
 	import: 'default',
@@ -21,9 +23,6 @@ export type Project = ProjectMeta & {
 	Body: Component;
 };
 
-/** What a card needs. The body stays out so list pages don't carry it. */
-export type ProjectCardData = Pick<Project, 'slug' | 'title' | 'summary' | 'status' | 'stack' | 'cover'>;
-
 function load(): Project[] {
 	const loaded: Project[] = [];
 	for (const [path, source] of Object.entries(sources)) {
@@ -39,6 +38,11 @@ function load(): Project[] {
 /** Every non-draft project, in display order. */
 export const projects: readonly Project[] = load();
 
+/** The card fields only, so list pages don't carry the compiled bodies. */
+export function toCardData({ slug, title, summary, status, stack, cover }: Project): ProjectCardData {
+	return { slug, title, summary, status, stack, cover };
+}
+
 export function getProject(slug: string): Project | undefined {
 	return projects.find((project) => project.slug === slug);
 }
@@ -49,21 +53,4 @@ export function nextProject(slug: string): Project | undefined {
 	const index = projects.findIndex((project) => project.slug === slug);
 	if (index === -1) return undefined;
 	return projects[(index + 1) % projects.length];
-}
-
-export function projectPath(slug: string): string {
-	return `/projects/${slug}`;
-}
-
-const MONTHS = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'] as const;
-
-export function formatMonth(value: YearMonth): string {
-	const year = value.slice(0, 4);
-	const month = MONTHS[Number(value.slice(5, 7)) - 1];
-	return `${month} ${year}`;
-}
-
-/** "Aug 2026 to now" for an ongoing project, "Sep 2023 to Dec 2025" for a finished one. */
-export function formatTimeline(start: YearMonth, end: YearMonth | null): string {
-	return `${formatMonth(start)} to ${end === null ? 'now' : formatMonth(end)}`;
 }

@@ -2,6 +2,13 @@
 	import { page } from '$app/state';
 	import ThemeToggle from '$lib/components/ThemeToggle.svelte';
 
+	type Props = {
+		/** False while every project is a draft, which hides the Projects link. */
+		hasProjects: boolean;
+	};
+
+	let { hasProjects }: Props = $props();
+
 	// Empty during prerender so the static HTML carries no build-time clock.
 	let time = $state('');
 
@@ -28,19 +35,18 @@
 
 <header class="frame-block flex items-center justify-between gap-x-3 py-3">
 	<div class="flex items-center gap-x-3 sm:gap-x-8">
-		<a
-			href="/"
-			aria-label="Home"
-			class="inline-flex min-h-11 items-center text-2xl leading-none font-bold tracking-[-0.08em]"
-		>
-			ac
+		<!-- The accessible name starts with the visible text, so voice control users can say "ac". -->
+		<a href="/" class="inline-flex min-h-11 items-center text-2xl leading-none font-bold tracking-[-0.08em]">
+			ac<span class="sr-only">, home</span>
 		</a>
 		<nav aria-label="Main" class="flex gap-3 sm:gap-7">
-			<a
-				href="/projects"
-				class={navLinkClass}
-				aria-current={page.url.pathname.startsWith('/projects') ? 'page' : undefined}>Projects</a
-			>
+			{#if hasProjects}
+				<a
+					href="/projects"
+					class={navLinkClass}
+					aria-current={page.url.pathname.startsWith('/projects') ? 'page' : undefined}>Projects</a
+				>
+			{/if}
 			<a href="/#experience" class={navLinkClass}>Experience</a>
 			<a href="/asarelcastellanos_resume.pdf" class={navLinkClass}>Resume</a>
 		</nav>

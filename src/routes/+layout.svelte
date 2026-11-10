@@ -5,7 +5,7 @@
 	import Header from '$lib/components/Header.svelte';
 	import { SITE_AUTHOR } from '$lib/site';
 
-	let { children } = $props();
+	let { data, children } = $props();
 </script>
 
 <!-- Per-page tags (title, description, canonical, Open Graph, Twitter) come from Seo.svelte. -->
@@ -24,7 +24,7 @@
 <!-- The outer div leaves a 16px gutter so the dot grid shows beside the column on a phone. The dashed side borders are the frame lines. -->
 <div class="px-4">
 	<div class="mx-auto flex min-h-screen max-w-6xl flex-col border-x border-dashed border-frame bg-background">
-		<Header />
+		<Header hasProjects={data.hasProjects} />
 		<div class="flex-1">
 			{@render children()}
 		</div>

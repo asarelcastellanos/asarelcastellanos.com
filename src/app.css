@@ -1,8 +1,20 @@
 @import 'tailwindcss';
-@import '@heroui/styles';
+
+/* HeroUI's selective import: the prelude, then only the components the site uses. The full
+   '@heroui/styles' import adds every component and made the render-blocking stylesheet 479KB. Add a
+   component here before using its classes. */
+@import '@heroui/styles/utilities';
+@import '@heroui/styles/variants';
+@import '@heroui/styles/base' layer(base);
+@import '@heroui/styles/themes/default' layer(theme);
+@import '@heroui/styles/components/button.css' layer(components);
+@import '@heroui/styles/components/card.css' layer(components);
+@import '@heroui/styles/components/link.css' layer(components);
+@import '@heroui/styles/components/typography.css' layer(components);
 
 /* Self-hosted Geist. The files and their license live in src/lib/fonts. One variable file covers every
-   sans weight the site uses (400 to 800), which is smaller than separate files per weight. */
+   sans weight the site uses (400 to 800), which is smaller than separate files per weight. Each file is
+   subset to Latin, punctuation, and arrows, which halves its size. The README has the command. */
 @font-face {
 	font-family: 'Geist';
 	font-style: normal;

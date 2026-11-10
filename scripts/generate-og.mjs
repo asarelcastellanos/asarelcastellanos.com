@@ -1,5 +1,5 @@
 import { Resvg } from '@resvg/resvg-js';
-import { mkdirSync, readdirSync, readFileSync, writeFileSync } from 'node:fs';
+import { mkdirSync, readdirSync, readFileSync, rmSync, writeFileSync } from 'node:fs';
 import { fileURLToPath } from 'node:url';
 import { dirname, resolve } from 'node:path';
 
@@ -58,8 +58,7 @@ const fontOptions = {
 	fontFiles: [
 		`${fontDir}/Geist-Regular.ttf`,
 		`${fontDir}/Geist-Medium.ttf`,
-		`${fontDir}/Geist-SemiBold.ttf`,
-		`${fontDir}/Geist-Bold.ttf`
+		`${fontDir}/Geist-SemiBold.ttf`
 	],
 	loadSystemFonts: false,
 	defaultFontFamily: 'Geist'
@@ -123,13 +122,23 @@ const homePng = render(homeSvg);
 writeFileSync(out, homePng);
 console.log(`wrote ${out} (${homePng.length} bytes)`);
 
-// One image per non-draft project, at static/og/<slug>.png.
+// One image per non-draft project, at static/og/<slug>.png. Images left over from a project that is
+// now a draft or deleted are removed, so static/ only holds images a page uses.
 mkdirSync(projectOutDir, { recursive: true });
+const written = new Set();
 for (const name of readdirSync(projectsDir).filter((entry) => entry.endsWith('.md')).sort()) {
 	const meta = parseProjectMeta(readFileSync(resolve(projectsDir, name), 'utf8'), `src/content/projects/${name}`);
 	if (meta.draft) continue;
-	const file = resolve(projectOutDir, `${slugFromPath(name)}.png`);
+	const slug = slugFromPath(name);
+	written.add(`${slug}.png`);
+	const file = resolve(projectOutDir, `${slug}.png`);
 	const png = render(projectSvg(meta));
 	writeFileSync(file, png);
 	console.log(`wrote ${file} (${png.length} bytes)`);
+}
+for (const name of readdirSync(projectOutDir)) {
+	if (name.endsWith('.png') && !written.has(name)) {
+		rmSync(resolve(projectOutDir, name));
+		console.log(`removed ${resolve(projectOutDir, name)}`);
+	}
 }
