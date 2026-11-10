@@ -2,6 +2,7 @@
 	import arrowDownToLine from '@gravity-ui/icons/svgs/arrow-down-to-line.svg?raw';
 	import arrowLeft from '@gravity-ui/icons/svgs/arrow-left.svg?raw';
 	import arrowUpRight from '@gravity-ui/icons/svgs/arrow-up-right.svg?raw';
+	import display from '@gravity-ui/icons/svgs/display.svg?raw';
 	import moon from '@gravity-ui/icons/svgs/moon.svg?raw';
 	import sun from '@gravity-ui/icons/svgs/sun.svg?raw';
 
@@ -11,6 +12,7 @@
 		'arrow-left': arrowLeft,
 		'arrow-down-to-line': arrowDownToLine,
 		'arrow-up-right': arrowUpRight,
+		display,
 		moon,
 		sun
 	} as const;

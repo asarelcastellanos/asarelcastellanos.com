@@ -1,32 +1,51 @@
 <script lang="ts">
 	import { buttonVariants } from '@heroui/styles';
-	import { onMount } from 'svelte';
 	import Icon from '$lib/components/Icon.svelte';
-	import { applyTheme, currentTheme, nextTheme, type Theme } from '$lib/theme';
+	import {
+		applyTheme,
+		currentPreference,
+		DARK_SCHEME_QUERY,
+		nextPreference,
+		resolveTheme,
+		savePreference,
+		type ThemePreference
+	} from '$lib/theme';
 
-	// Prerendered HTML is always light. onMount reads what the pre-paint script chose.
-	let theme = $state<Theme>('light');
+	// Prerendered HTML always says "system". The effect reads what the pre-paint script chose.
+	let preference = $state<ThemePreference>('system');
 
-	onMount(() => {
-		theme = currentTheme();
+	const label = $derived(`Theme: ${preference}. Switch to ${nextPreference(preference)}`);
+
+	$effect(() => {
+		preference = currentPreference();
+
+		// While the preference is "system", follow the OS when it switches, such as at sunset.
+		const query = matchMedia(DARK_SCHEME_QUERY);
+		const onChange = (): void => {
+			if (preference === 'system') applyTheme(resolveTheme('system', query.matches), 'system');
+		};
+		query.addEventListener('change', onChange);
+		return () => query.removeEventListener('change', onChange);
 	});
 
-	const label = $derived(nextTheme(theme) === 'light' ? 'Switch to light theme' : 'Switch to dark theme');
-
-	function toggle(): void {
-		theme = nextTheme(theme);
-		applyTheme(theme);
+	function cycle(): void {
+		preference = nextPreference(preference);
+		savePreference(preference);
+		applyTheme(resolveTheme(preference, matchMedia(DARK_SCHEME_QUERY).matches), preference);
 	}
 </script>
 
-<!-- Both icons are in the markup and CSS picks one from data-theme on <html>, so there is no wrong icon
-     before hydration. The kit's dark: variant also matches the system setting, so it is not used here. -->
+<!-- All three icons are in the markup and CSS picks one from data-theme-preference on <html>, so the
+     right icon shows before hydration. The kit's dark: variant also matches the system setting, so it is
+     not used here. -->
 <button
 	type="button"
 	class="{buttonVariants({ variant: 'ghost', isIconOnly: true })} h-11 w-11 text-muted hover:text-foreground md:h-11 md:w-11"
 	aria-label={label}
-	onclick={toggle}
+	title={label}
+	onclick={cycle}
 >
-	<Icon name="sun" class="hidden in-data-[theme=dark]:inline" />
-	<Icon name="moon" class="inline in-data-[theme=dark]:hidden" />
+	<Icon name="display" class="inline in-data-[theme-preference=light]:hidden in-data-[theme-preference=dark]:hidden" />
+	<Icon name="sun" class="hidden in-data-[theme-preference=light]:inline" />
+	<Icon name="moon" class="hidden in-data-[theme-preference=dark]:inline" />
 </button>

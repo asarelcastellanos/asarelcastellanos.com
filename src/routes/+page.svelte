@@ -26,10 +26,7 @@
 		name: SITE_AUTHOR,
 		url: SITE_URL,
 		jobTitle: 'Data analyst and engineer',
-		alumniOf: [
-			{ '@type': 'CollegeOrUniversity', name: 'Cal Poly San Luis Obispo' },
-			{ '@type': 'CollegeOrUniversity', name: 'Santa Monica College' }
-		],
+		alumniOf: [{ '@type': 'CollegeOrUniversity', name: 'Cal Poly San Luis Obispo' }],
 		knowsLanguage: ['English', 'Spanish'],
 		sameAs: [GITHUB_URL, LINKEDIN_URL],
 		address: { '@type': 'PostalAddress', addressLocality: 'Los Angeles' }
