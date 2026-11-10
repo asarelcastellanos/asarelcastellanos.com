@@ -25,9 +25,12 @@
 		'@type': 'Person',
 		name: SITE_AUTHOR,
 		url: SITE_URL,
-		jobTitle: 'Full-stack engineer',
-		worksFor: { '@type': 'Organization', name: 'Arrow' },
-		alumniOf: { '@type': 'CollegeOrUniversity', name: 'Cal Poly San Luis Obispo' },
+		jobTitle: 'Data analyst and engineer',
+		alumniOf: [
+			{ '@type': 'CollegeOrUniversity', name: 'Cal Poly San Luis Obispo' },
+			{ '@type': 'CollegeOrUniversity', name: 'Santa Monica College' }
+		],
+		knowsLanguage: ['English', 'Spanish'],
 		sameAs: [GITHUB_URL, LINKEDIN_URL],
 		address: { '@type': 'PostalAddress', addressLocality: 'Los Angeles' }
 	};
@@ -46,14 +49,15 @@
 	<section class="flex max-w-2xl flex-col gap-5 sm:gap-6">
 		<h1 class="text-3xl font-semibold tracking-tight text-balance sm:text-4xl">{SITE_AUTHOR}</h1>
 		<p class="text-lg leading-relaxed text-pretty">
-			Full-stack engineer in Los Angeles. At Arrow I build the crawlers and ingestion pipelines
-			behind an equipment marketplace: 45,000 listings a day from more than 200 sources, matched
-			against a catalog of 41,000 models. Outside work I build things like
+			Data analyst and engineer in Los Angeles, with an economics degree and a software background.
+			Most recently, at Arrow, I designed the catalog data model for an equipment marketplace with
+			41,000+ models and used an LLM to cut seller onboarding from days to under an hour. Outside
+			work I build things like
 			<a class="link text-accent" href="/projects/howlate-la">howlate.la</a>, which records every LA
 			Metro bus and train and grades each one against the timetable.
 		</p>
 		<p class="text-muted">
-			Open to new full-stack and data roles, in Los Angeles or anywhere I'd relocate for.
+			Open to data analyst, BI, and analytics engineering roles in Los Angeles, remote, or anywhere I'd relocate for. Bilingual in English and Spanish.
 		</p>
 		<div class="flex flex-wrap items-center gap-x-5 gap-y-3 pt-2">
 			<a
@@ -108,13 +112,15 @@
 
 	<Section title="Education">
 		<ul class="flex flex-col">
-			<EntryRow
-				organization={education.organization}
-				title={education.title}
-				summary={education.summary}
-				dates={formatEntryDates(education)}
-				mutedSummary
-			/>
+			{#each education as school (school.organization)}
+				<EntryRow
+					organization={school.organization}
+					title={school.title}
+					summary={school.summary}
+					dates={formatEntryDates(school)}
+					mutedSummary
+				/>
+			{/each}
 		</ul>
 	</Section>
 

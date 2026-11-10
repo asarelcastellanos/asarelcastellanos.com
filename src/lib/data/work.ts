@@ -1,8 +1,8 @@
 import { isYearMonth, type YearMonth } from '$lib/content/frontmatter';
 import { formatMonth } from '$lib/content/projects';
 
-/** An end date is a month, null for "still going", or "unknown" when the date is not known yet. */
-export type EndDate = YearMonth | null | 'unknown';
+/** An end date is a month, or null for "still going". */
+export type EndDate = YearMonth | null;
 
 export type Entry = {
 	organization: string;
@@ -24,40 +24,39 @@ function formatEnd(end: EndDate): string {
 	switch (end) {
 		case null:
 			return 'now';
-		case 'unknown':
-			return '[END]';
 		default:
 			return formatMonth(end);
 	}
 }
 
-/** "Feb 2026 to now", "Sep 2023 to Dec 2025", or "Jun 2025 to [END]" while the end is unknown. */
+/** "Feb 2026 to now" or "Sep 2023 to Dec 2025". */
 export function formatEntryDates(entry: Pick<Entry, 'start' | 'end'>): string {
 	return `${formatMonth(entry.start)} to ${formatEnd(entry.end)}`;
 }
 
-/** Newest first. */
+/** Newest first. Source: the owner's LinkedIn profile, November 2026. */
 export const roles: readonly Entry[] = [
 	{
 		organization: 'Arrow',
-		title: 'Full-stack engineer',
+		title: 'Data engineer and analyst',
 		summary:
-			'Built the crawlers and ingestion pipelines that bring in 45,000+ used-equipment listings a day from 200+ sources, and cut seller onboarding from days to under an hour.',
+			'Designed the catalog data model for 41,000+ equipment models, matched seller listings to it with an LLM at 92% accuracy, and built a crawler that collects 45,000+ listings a day from 200+ sites.',
 		start: month('2026-02'),
-		end: null
+		end: month('2026-05')
 	},
 	{
 		organization: 'Cal Poly Orfalea College of Business',
 		title: 'Research assistant',
-		summary: '[One sentence on the Summer Undergraduate Research Program project]',
+		summary:
+			'Studied how tariffs reach local industries with Dr. Hamed Ghoddusi, built the R pipelines and event study behind the analysis, and presented the findings to Paso Robles winery owners.',
 		start: month('2025-06'),
-		end: 'unknown'
+		end: month('2025-08')
 	},
 	{
 		organization: 'Snap',
 		title: 'Software engineering intern',
 		summary:
-			'Shipped a Vue and Go tool that traces each media upload through its IDs, which cut root-cause investigations from hours to minutes.',
+			'Wrote BigQuery SQL to find where media quality dropped in the Stories and Spotlight pipeline, and shipped a Vue and Go tool that cut time spent on tracing tickets by 80%.',
 		start: month('2024-06'),
 		end: month('2024-09')
 	},
@@ -65,24 +64,35 @@ export const roles: readonly Entry[] = [
 		organization: 'Axios',
 		title: 'Software engineering intern',
 		summary:
-			'Moved the newsletter signup flow from Webflow to Next.js with accessible TypeScript components, and added a honeypot that flagged 100+ bots in its first week.',
+			'Moved the newsletter signup flow from Webflow to Next.js with accessible TypeScript components, and added a honeypot that flagged 3,000+ bots in its first week.',
 		start: month('2023-06'),
 		end: month('2023-08')
 	},
 	{
 		organization: 'Snap Engineering Academy',
 		title: 'Scholar',
-		summary: 'Built the React Native starter template that the 2022, 2023, and 2024 cohorts used.',
+		summary:
+			'Built the React Native starter template that the 2022, 2023, and 2024 cohorts used, saving instructors about a week of setup each time.',
 		start: month('2022-06'),
 		end: month('2022-08')
 	}
 ];
 
-export const education: Entry = {
-	organization: 'Cal Poly San Luis Obispo',
-	title: 'BS Economics, Quantitative Analysis',
-	summary:
-		'Econometrics, time series forecasting, statistical computing in R, regression analysis, and design of experiments.',
-	start: month('2023-09'),
-	end: month('2025-12')
-};
+/** Newest first. */
+export const education: readonly Entry[] = [
+	{
+		organization: 'Cal Poly San Luis Obispo',
+		title: 'BS Economics, Quantitative Analysis',
+		summary:
+			'Econometrics, time series forecasting, statistical computing in R, regression analysis, and design of experiments.',
+		start: month('2023-06'),
+		end: month('2025-12')
+	},
+	{
+		organization: 'Santa Monica College',
+		title: 'AS Computer Science, AA-T Economics',
+		summary: 'Tutored 13 computer science courses in five languages before transferring to Cal Poly.',
+		start: month('2021-06'),
+		end: month('2023-06')
+	}
+];
