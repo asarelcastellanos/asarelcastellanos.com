@@ -1,6 +1,8 @@
 <script lang="ts">
 	import '../app.css';
 
+	import Footer from '$lib/components/Footer.svelte';
+	import Header from '$lib/components/Header.svelte';
 	import { OG_IMAGE, SITE_AUTHOR, SITE_DESCRIPTION, SITE_TITLE, SITE_URL } from '$lib/site';
 
 	let { children } = $props();
@@ -9,7 +11,6 @@
 <svelte:head>
 	<link rel="icon" href="/monogram.svg" type="image/svg+xml" />
 	<link rel="canonical" href={SITE_URL} />
-	<meta name="theme-color" content="#0B0B0C" />
 	<meta name="author" content={SITE_AUTHOR} />
 
 	<meta property="og:type" content="website" />
@@ -28,4 +29,17 @@
 	<meta name="twitter:image" content={OG_IMAGE} />
 </svelte:head>
 
-{@render children()}
+<a
+	href="#main"
+	class="button button--primary sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-50"
+>
+	Skip to main content
+</a>
+
+<div class="mx-auto flex min-h-screen max-w-6xl flex-col px-4 sm:px-6">
+	<Header />
+	<div class="flex-1">
+		{@render children()}
+	</div>
+	<Footer />
+</div>

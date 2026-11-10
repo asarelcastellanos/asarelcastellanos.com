@@ -1,10 +1,8 @@
 <script lang="ts">
-	import Header from '$lib/components/Header.svelte';
 	import Bio from '$lib/components/Bio.svelte';
 	import Section from '$lib/components/Section.svelte';
 	import Work from '$lib/components/Work.svelte';
 	import LinkRow from '$lib/components/LinkRow.svelte';
-	import Footer from '$lib/components/Footer.svelte';
 	import { SITE_DESCRIPTION, SITE_TITLE } from '$lib/site';
 </script>
 
@@ -13,23 +11,22 @@
 	<meta name="description" content={SITE_DESCRIPTION} />
 </svelte:head>
 
-<main>
-	<Header />
+<main id="main" class="flex flex-col gap-16 pt-16 sm:pt-24">
 	<Bio />
 
-	<Section eyebrow="currently">
-		<p class="currently">
+	<Section title="Currently">
+		<p class="max-w-prose leading-relaxed">
 			Building data pipelines and crawlers that pretend to be browsers. Reading more, writing less.
 			Tools sharp, dependencies few.
 		</p>
 	</Section>
 
-	<Section eyebrow="work">
+	<Section id="experience" title="Work">
 		<Work />
 	</Section>
 
-	<Section eyebrow="elsewhere">
-		<div class="links">
+	<Section title="Elsewhere">
+		<div class="flex max-w-prose flex-col border-b border-separator">
 			<LinkRow label="GitHub" meta="asarelcastellanos" href="https://github.com/asarelcastellanos" />
 			<LinkRow
 				label="LinkedIn"
@@ -39,29 +36,4 @@
 			<LinkRow label="Email" meta="say hi" href="mailto:asarelc@gmail.com" />
 		</div>
 	</Section>
-
-	<Footer />
 </main>
-
-<style>
-	main {
-		max-width: 640px;
-		margin: 0 auto;
-		padding: 32px 24px 48px;
-		min-height: 100vh;
-	}
-
-	.links {
-		display: flex;
-		flex-direction: column;
-	}
-
-	.currently {
-		font-family: var(--font-sans);
-		font-size: 16px;
-		line-height: 1.55;
-		color: var(--fg);
-		max-width: 560px;
-		margin: 0;
-	}
-</style>

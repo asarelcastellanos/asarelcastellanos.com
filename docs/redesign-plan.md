@@ -39,7 +39,7 @@ These came from the owner on 2026-11-09.
 
 - Structure: a home page plus one page per project at `/projects/<slug>`. Project pages are Markdown files.
 - Projects at launch: howlate.la and Engine 13 (a codename). The GIF party game is out. More projects come later, so adding one must be a single new Markdown file plus images.
-- Design: evolve the current look. Keep near-black, amber, and Geist. Add a light theme, a wider grid for project images, and normal capitalization. Remove the cursor dot.
+- Design: evolve the current look with a sage-on-black palette (owner's pick from the preview canvas, 2026-11-09). Keep near-black and Geist; sage replaces amber as the accent. Add a light theme, a wider grid for project images, and normal capitalization. Remove the cursor dot.
 - Audience: hiring managers and general visitors equally. Projects lead the home page, with a clear path to experience and the résumé.
 
 - UI rules: build with the owner's `web-ui` skill (`~/Documents/claude-skills/skills/web-ui`) so the result doesn't read as AI output. Svelte uses the skill's CSS layer: Tailwind CSS v4 plus `@heroui/styles`, with BEM classes on native elements. The current look comes back through token overrides, not custom component CSS. Code follows `typescript-best-practices` and `principle-boundary-discipline`, and all copy goes through `unslop`.
@@ -96,22 +96,26 @@ Change as few tokens as the look needs. Everything else stays HeroUI's default.
 
 | Token | Dark (default) | Light |
 |---|---|---|
-| `--background` | ink `#0B0B0C` | paper `#F2EDE4` |
-| `--foreground` | paper `#F2EDE4` | ink `#0B0B0C` |
-| `--surface` | `#16161A` | a slightly lighter paper |
-| `--muted` | `#8A8A93` | a darker gray that passes 4.5:1 on paper |
-| `--border`, `--separator` | `#2A2A2F` | a paper-toned line |
-| `--accent` | amber `#E6B450` | a darker amber that passes 4.5:1 on paper |
-| `--accent-foreground` | ink | ink or paper, whichever passes 4.5:1 |
-| `--font-sans`, `--font-mono` | Geist, Geist Mono (self-hosted from the `geist` package) | same |
+| `--background` | `#090B0A` | `#EEF1EC` |
+| `--foreground` | `#E9EEEA` | `#0A0D0B` |
+| `--surface` | `#121614` | `#F7F9F5` |
+| `--surface-secondary` | `#1A201C` | `#DFE5DD` |
+| `--muted` | `#879189` | `#56605A` |
+| `--border` | `#26302A` | `#C7D0C6` |
+| `--separator` | `#1E2621` | `#D6DED4` |
+| `--accent` | sage `#9CC59A` | dark sage `#466A47` |
+| `--accent-foreground` | `#090B0A` | `#EEF1EC` |
+| `--font-sans`, `--font-mono` | Geist, Geist Mono (self-hosted font files) | same |
 
-Dark is the default. The theme follows `prefers-color-scheme`, and a header toggle stores the choice in `localStorage`. Use the skill's pre-paint script so the page doesn't flash, and set both `class="dark"` and `data-theme="dark"` on `<html>`. The implementer checks every override pair for contrast and records the ratios in the PR.
+Measured contrast: text 16.8:1 dark and 17.1:1 light; muted text at least 5.1:1 on every surface; accent 10.2:1 on black and 5.4:1 on the light background, and button text on the accent passes at the same ratios. The favicon (`static/monogram.svg`) and the OG image script switch from the old paper and ink colors to these.
+
+Preview canvas: https://claude.ai/artifact/NGFSzqPaz9snS5G6EQUrZb (the "Home, sage on black" board is the chosen look). Dark is the default. The theme follows `prefers-color-scheme`, and a header toggle stores the choice in `localStorage`. Use the skill's pre-paint script so the page doesn't flash, and set both `class="dark"` and `data-theme="dark"` on `<html>`. The implementer checks every override pair for contrast and records the ratios in the PR.
 
 ### Rules from the skill that change the current site
 
 - No all-caps labels. The uppercase "— currently" eyebrows go. Section titles use the skill's section title style, in sentence case.
 - One icon set: `@gravity-ui/icons`. It replaces the two hand-drawn SVGs in `src/lib/icons/`.
-- Accent means something: links, the focus ring, the one primary action. No decorative amber.
+- Accent means something: links, the focus ring, the one primary action. No decorative use of the accent.
 - Focus: every interactive element shows the accent focus ring with a 2px offset. Add a skip link.
 - Motion explains a state change and respects `prefers-reduced-motion`. No JS-gated fade, no cursor follower, no hover lift on anything that isn't a link.
 - Type: the skill's scale, one or two steps larger for the home intro (it counts as a marketing page). One display size per page. `tabular-nums` on dates and numbers.
