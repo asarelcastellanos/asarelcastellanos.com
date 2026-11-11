@@ -3,9 +3,28 @@
 
 	import Footer from '$lib/components/Footer.svelte';
 	import Header from '$lib/components/Header.svelte';
+	import { RESUME_URL, resumeViewer } from '$lib/resume-viewer.svelte';
 	import { SITE_AUTHOR } from '$lib/site';
+	import type { Component } from 'svelte';
 
 	let { data, children } = $props();
+
+	// The viewer loads on the first click on a resume link, so the home page does not pay for it.
+	let Viewer: Component | null = $state.raw(null);
+
+	$effect(() => {
+		if (!resumeViewer.isOpen || Viewer) return;
+		import('$lib/components/ResumeViewer.svelte').then(
+			(module) => {
+				Viewer = module.default;
+			},
+			() => {
+				// The chunk failed to load, so hand the click back to the link's own behavior.
+				resumeViewer.close();
+				location.assign(RESUME_URL);
+			}
+		);
+	});
 </script>
 
 <!-- Per-page tags (title, description, canonical, Open Graph, Twitter) come from Seo.svelte. -->
@@ -31,3 +50,7 @@
 		<Footer />
 	</div>
 </div>
+
+{#if Viewer}
+	<Viewer />
+{/if}
