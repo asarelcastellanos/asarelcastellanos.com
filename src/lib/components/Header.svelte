@@ -1,6 +1,7 @@
 <script lang="ts">
 	import { page } from '$app/state';
 	import ThemeToggle from '$lib/components/ThemeToggle.svelte';
+	import { openResumeFromClick, RESUME_URL } from '$lib/resume-viewer.svelte';
 
 	type Props = {
 		/** False while every project is a draft, which hides the Projects link. */
@@ -30,7 +31,7 @@
 	});
 
 	const navLinkClass =
-		'inline-flex min-h-11 items-center font-mono text-[13px] tracking-[0.02em] text-muted lowercase hover:text-foreground';
+		'inline-flex min-h-11 items-center font-mono text-[13px] tracking-[0.02em] text-muted hover:text-foreground';
 </script>
 
 <header class="frame-block flex items-center justify-between gap-x-3 py-3">
@@ -48,12 +49,12 @@
 				>
 			{/if}
 			<a href="/#experience" class={navLinkClass}>Experience</a>
-			<a href="/asarelcastellanos_resume.pdf" class={navLinkClass}>Resume</a>
+			<a href={RESUME_URL} class={navLinkClass} onclick={openResumeFromClick}>Resume</a>
 		</nav>
 	</div>
 	<div class="flex items-center gap-3">
 		<!-- Hidden below 640px so the header stays on one row on a phone. -->
-		<p class="hidden gap-2 font-mono text-[13px] whitespace-nowrap text-muted tabular-nums lowercase sm:flex">
+		<p class="hidden gap-2 font-mono text-[13px] whitespace-nowrap text-muted tabular-nums sm:flex">
 			<span>Los Angeles</span>
 			<span aria-hidden="true">·</span>
 			<span>

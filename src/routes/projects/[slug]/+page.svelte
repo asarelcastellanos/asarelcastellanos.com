@@ -21,7 +21,7 @@
 
 <main id="main" class="flex flex-col">
 	<header class="frame-block flex flex-col gap-4 pt-12 pb-12 sm:pt-16">
-		<a href="/projects" class="inline-flex min-h-11 items-center gap-1 self-start font-mono text-[13px] text-muted lowercase underline underline-offset-4 hover:text-accent">
+		<a href="/projects" class="inline-flex min-h-11 items-center gap-1 self-start font-mono text-[13px] text-muted underline underline-offset-4 hover:text-accent">
 			<Icon name="arrow-left" />
 			Projects
 		</a>
@@ -34,20 +34,20 @@
 
 	<dl class="frame-block grid grid-cols-2 gap-x-8 gap-y-4 py-6 sm:grid-cols-4">
 		<div class="flex flex-col gap-1">
-			<dt class="font-mono text-[13px] text-muted lowercase">Role</dt>
+			<dt class="font-mono text-[13px] text-muted">Role</dt>
 			<dd>{project.role}</dd>
 		</div>
 		<div class="flex flex-col gap-1">
-			<dt class="font-mono text-[13px] text-muted lowercase">Timeline</dt>
+			<dt class="font-mono text-[13px] text-muted">Timeline</dt>
 			<dd class="tabular-nums">{formatTimeline(project.start, project.end)}</dd>
 		</div>
 		<div class="flex flex-col gap-1">
-			<dt class="font-mono text-[13px] text-muted lowercase">Stack</dt>
+			<dt class="font-mono text-[13px] text-muted">Stack</dt>
 			<dd>{project.stack.join(', ')}</dd>
 		</div>
 		{#if project.links.site !== null || project.links.source !== null}
 			<div class="flex flex-col gap-1">
-				<dt class="font-mono text-[13px] text-muted lowercase">Links</dt>
+				<dt class="font-mono text-[13px] text-muted">Links</dt>
 				<dd class="flex flex-wrap gap-x-4">
 					{#if project.links.site !== null}
 						<a href={project.links.site} class="link text-accent" target="_blank" rel="noreferrer">Site</a>
@@ -74,7 +74,7 @@
 	{#if next !== null}
 		<nav aria-label="More projects" class="frame-block flex justify-end py-6">
 			<a href={projectPath(next.slug)} class="group flex flex-col items-end gap-1">
-				<span class="font-mono text-[13px] text-muted lowercase">Next project</span>
+				<span class="font-mono text-[13px] text-muted">Next project</span>
 				<span class="text-lg font-semibold group-hover:text-accent group-focus-visible:text-accent">{next.title}</span>
 			</a>
 		</nav>

@@ -19,7 +19,7 @@
 
 <main id="main" class="flex flex-col">
 	<div class="frame-block flex flex-col gap-1 pt-16 pb-12 sm:pt-24">
-		<h1 class="text-2xl font-semibold tracking-tight lowercase">Projects</h1>
+		<h1 class="text-2xl font-semibold tracking-tight">Projects</h1>
 		<p class="text-sm text-muted">{description}</p>
 	</div>
 

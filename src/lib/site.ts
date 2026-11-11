@@ -2,9 +2,9 @@
 export const SITE_URL = 'https://www.asarelcastellanos.com';
 export const SITE_TITLE = 'Asarel Castellanos';
 export const SITE_AUTHOR = 'Asarel Castellanos';
-/** The opening of the home intro, under 160 characters. */
+/** A summary of the home intro, under 160 characters. */
 export const SITE_DESCRIPTION =
-	'Data analyst and engineer in Los Angeles, with an economics degree and a software background.';
+	'I design data models, write the SQL and pipelines behind them, and test the results. Economics degree, software background, based in Los Angeles.';
 export const SOURCE_URL = 'https://github.com/asarelcastellanos/asarelcastellanos.com';
 export const GITHUB_URL = 'https://github.com/asarelcastellanos';
 export const LINKEDIN_URL = 'https://www.linkedin.com/in/asarelcastellanos/';

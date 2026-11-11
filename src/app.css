@@ -160,12 +160,12 @@ button:focus-visible,
 
 /* Small mono label above a group of content. */
 @utility section-label {
-	@apply font-mono text-[13px] font-medium text-muted lowercase;
+	@apply font-mono text-[13px] font-medium text-muted;
 }
 
 /* Secondary link: mono, underlined, with an arrow. The arrow is generated and carries no text for screen readers. */
 @utility link-mono {
-	@apply font-mono underline decoration-1 underline-offset-4 lowercase;
+	@apply font-mono underline decoration-1 underline-offset-4;
 
 	&::after {
 		content: '\2192' / '';

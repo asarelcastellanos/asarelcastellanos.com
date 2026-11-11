@@ -7,6 +7,7 @@
 	import Section from '$lib/components/Section.svelte';
 	import Seo from '$lib/components/Seo.svelte';
 	import { education, formatEntryDates, roles } from '$lib/data/work';
+	import { openResumeFromClick, RESUME_URL } from '$lib/resume-viewer.svelte';
 	import {
 		EMAIL,
 		GITHUB_URL,
@@ -27,7 +28,6 @@
 		url: SITE_URL,
 		jobTitle: 'Data analyst and engineer',
 		alumniOf: [{ '@type': 'CollegeOrUniversity', name: 'Cal Poly San Luis Obispo' }],
-		knowsLanguage: ['English', 'Spanish'],
 		sameAs: [GITHUB_URL, LINKEDIN_URL],
 		address: { '@type': 'PostalAddress', addressLocality: 'Los Angeles' }
 	};
@@ -44,21 +44,23 @@
 
 <main id="main" class="flex flex-col">
 	<section class="frame-block flex flex-col gap-6 pt-16 pb-16 sm:pt-24 sm:pb-24">
-		<h1 class="max-w-3xl text-5xl leading-[0.98] font-extrabold tracking-[-0.045em] text-balance lowercase sm:text-6xl lg:text-7xl">{SITE_AUTHOR}</h1>
+		<h1 class="max-w-3xl text-5xl leading-[0.98] font-extrabold tracking-[-0.045em] text-balance sm:text-6xl lg:text-7xl">{SITE_AUTHOR}</h1>
 		<p class="max-w-2xl text-lg leading-relaxed text-pretty">
-			Data analyst and engineer in Los Angeles, with an economics degree and a software background.
-			Most recently, at Arrow, I designed the catalog data model for an equipment marketplace with
-			41,000+ models and used an LLM to cut seller onboarding from days to under an hour.
+			I design the data model, write the SQL and pipelines behind it, and test whether the results hold.
+			My economics degree and software background cover each step. At Arrow, I did this for an
+			equipment marketplace with 41,000+ models, and used an LLM to cut seller onboarding from days
+			to under an hour.
 		</p>
 		<p class="flex max-w-2xl items-start gap-2.5 text-muted">
 			<span aria-hidden="true" class="mt-[0.55em] size-2 shrink-0 bg-mint"></span>
-			<span>Open to data analyst, BI, and analytics engineering roles in Los Angeles, remote, or anywhere I'd relocate for. Bilingual in English and Spanish.</span>
+			<span>Open to Data Analyst roles (business intelligence, product analytics, operations analytics), Data Engineer and Analytics Engineer roles, and Full-Stack Developer or Forward Deployed Engineer roles. Based in Los Angeles, open to remote work and to relocating.</span>
 		</p>
 		<div class="flex flex-wrap items-center gap-x-5 gap-y-3 pt-2">
 			<a
-				class="{buttonVariants({ variant: 'primary', size: 'lg' })} lowercase"
-				href="/asarelcastellanos_resume.pdf"
+				class="{buttonVariants({ variant: 'primary', size: 'lg' })}"
+				href={RESUME_URL}
 				download
+				onclick={openResumeFromClick}
 			>
 				<Icon name="arrow-down-to-line" />
 				Download resume
@@ -78,7 +80,7 @@
 			<!-- auto-fit with a 300px minimum keeps a lone card from filling the row; the cap sets its width. -->
 			<ul class="grid grid-cols-[repeat(auto-fit,minmax(min(100%,300px),1fr))] gap-6">
 				{#each data.projects as project (project.slug)}
-					<li class="grid max-w-md">
+					<li class={["grid", data.projects.length === 1 && "max-w-md"]}>
 						<ProjectCard {project} />
 					</li>
 				{/each}
@@ -97,7 +99,7 @@
 				/>
 			{/each}
 		</ul>
-		<a class="link-mono mt-1 inline-flex min-h-11 items-center self-start text-[13px]" href="/asarelcastellanos_resume.pdf" download>
+		<a class="link-mono mt-1 inline-flex min-h-11 items-center self-start text-[13px]" href={RESUME_URL} download onclick={openResumeFromClick}>
 			Full resume (PDF)
 		</a>
 	</Section>

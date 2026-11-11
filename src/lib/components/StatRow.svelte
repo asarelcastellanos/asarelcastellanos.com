@@ -18,7 +18,7 @@
 <section aria-label={label} data-wide class="my-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
 	{#each stats as stat (stat.label)}
 		<div class="card card--default gap-1 rounded-none border border-border shadow-none">
-			<span class="font-mono text-[13px] text-muted lowercase">{stat.label}</span>
+			<span class="font-mono text-[13px] text-muted">{stat.label}</span>
 			<span class="text-3xl font-semibold tracking-tight tabular-nums">{stat.value}</span>
 			<span class="text-xs text-muted tabular-nums">{stat.note}</span>
 		</div>

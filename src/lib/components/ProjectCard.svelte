@@ -30,6 +30,6 @@
 			<StatusChip status={project.status} />
 		</div>
 		<p class="text-[15px] leading-relaxed text-muted">{project.summary}</p>
-		<p class="font-mono text-xs text-muted lowercase">{project.stack.join(' · ')}</p>
+		<p class="font-mono text-xs text-muted">{project.stack.join(' · ')}</p>
 	</div>
 </a>
