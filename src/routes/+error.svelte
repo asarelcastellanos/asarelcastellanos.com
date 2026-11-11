@@ -18,8 +18,8 @@
 
 <main id="main">
 	<div class="frame-block flex flex-col items-center gap-3 py-20 text-center sm:py-28">
-		<h1 class="text-base font-semibold lowercase">{heading}</h1>
+		<h1 class="text-base font-semibold">{heading}</h1>
 		<p class="max-w-sm text-sm text-muted">{message}</p>
-		<a href="/" class="{buttonVariants({ variant: 'secondary', size: 'sm' })} mt-1 lowercase">Go to the home page</a>
+		<a href="/" class="{buttonVariants({ variant: 'secondary', size: 'sm' })} mt-1">Go to the home page</a>
 	</div>
 </main>

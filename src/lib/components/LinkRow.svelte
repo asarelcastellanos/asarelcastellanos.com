@@ -18,8 +18,8 @@
 	rel={isWebLink ? 'noreferrer' : undefined}
 	class="group flex items-baseline gap-3 border-t border-dashed border-frame py-3.5"
 >
-	<span class="font-medium lowercase group-hover:text-accent group-focus-visible:text-accent">{label}</span>
+	<span class="font-medium group-hover:text-accent group-focus-visible:text-accent">{label}</span>
 	<span class="flex-1"></span>
-	<span class="font-mono text-[13px] text-muted lowercase">{meta}</span>
+	<span class="font-mono text-[13px] text-muted">{meta}</span>
 	<Icon name="arrow-up-right" class="self-center text-muted" />
 </a>
